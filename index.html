@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OZZ ARCHIVE | Catálogo Oficial</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-door left"><img src="logo.jpg" class="splash-logo-half"></div>
+        <div class="splash-door right"><img src="logo.jpg" class="splash-logo-half"></div>
+    </div>
+
+    <div class="top-announcement-container">
+        <div class="top-announcement-text">
+            📦 ENVÍOS GRATIS EN TODOS LOS PEDIDOS 🔥 NUEVOS PACKS DISPONIBLES: AHORRA COMBINANDO CAMISETAS 📦 ENVÍOS GRATIS EN TODOS LOS PEDIDOS 🔥
+        </div>
+    </div>
+
+    <header>
+        <img src="logo.jpg" alt="OZZ ARCHIVE" class="brand-logo">
+        <div class="search-container"><input type="text" id="search-bar" class="search-input" onkeyup="searchProducts()" placeholder="Buscar equipo o selección..."></div>
+    </header>
+
+    <div class="nav-tabs">
+        <div class="nav-tabs">
+<button class="tab-btn active" onclick="filterCategory('inicio', this)">Inicio</button>    <button class="tab-btn" style="background-color: #bf0603; color: #fff; border-color: #bf0603;" onclick="filterCategory('packs', this)">🔥 PACKS</button>
+    <button class="tab-btn" onclick="filterCategory('camisetas', this)">Mundial</button>
+    <button class="tab-btn" onclick="filterCategory('retro', this)">Retro</button>
+    <button class="tab-btn" onclick="filterCategory('chandales', this)">Chándales</button>
+    <button class="tab-btn" onclick="filterCategory('f1', this)">F1</button>
+    <button class="tab-btn" onclick="filterCategory('nba', this)">NBA</button>
+</div>
+    </div>
+
+    <div class="container">
+        <!-- PORTADA INICIO: BANNERS NAVEGABLES -->
+        <div id="inicio" class="category-section" style="display: block;">
+            
+            <div class="banner-btn" onclick="filterCategory('packs', document.querySelectorAll('.tab-btn')[1])">
+                <!-- Usamos la captura del Hatriki que ya tienes para los packs -->
+                <img src="Ofertas.jpg" class="banner-img" alt="Packs">
+                <h2 class="banner-title">🔥 Packs Exclusivos</h2>
+            </div>
+
+            <div class="banner-btn" onclick="filterCategory('camisetas', document.querySelectorAll('.tab-btn')[2])">
+                <img src="banner-mundial.jpg" class="banner-img" alt="Mundial">
+                <h2 class="banner-title">⚽ Catálogo Mundial</h2>
+            </div>
+
+            <div class="banner-btn" onclick="filterCategory('retro', document.querySelectorAll('.tab-btn')[3])">
+                <img src="banner-retro.jpg" class="banner-img" alt="Retro">
+                <h2 class="banner-title">🕰️ Colección Retro</h2>
+            </div>
+
+            <div class="banner-btn" onclick="filterCategory('chandales', document.querySelectorAll('.tab-btn')[4])">
+                <!-- Imagen cargada directamente desde internet -->
+                <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=80" class="banner-img" alt="Chándales">
+                <h2 class="banner-title">🧥 Chándales</h2>
+            </div>
+
+
+            <div class="banner-btn" onclick="filterCategory('f1', document.querySelectorAll('.tab-btn')[6])">
+                <img src="banner-f1.jpg" class="banner-img" alt="Fórmula 1">
+                <h2 class="banner-title">🏎️ Fórmula 1</h2>
+            </div>
+
+            <div class="banner-btn" onclick="filterCategory('nba', document.querySelectorAll('.tab-btn')[7])">
+                <img src="banner-nba.jpg" class="banner-img" alt="NBA">
+                <h2 class="banner-title">🏀 NBA</h2>
+            </div>
+
+        </div>
+
+        </div>
+        <!-- SECCIÓN DE PACKS Y OFERTAS -->
+        <div id="packs" class="category-section" style="display: none;">
+            <h2 class="category-title" style="border-bottom: 2px solid #bf0603; color: #fff;">🔥 Packs Exclusivos</h2>
+            <div class="grid">
+
+                <!-- PACK 1: HATRIKI -->
+                <div class="card pack-card">
+                    <div class="pack-badge" style="background-color: #ffcc00; color: #ffffff;">3x50€</div>
+                    <div class="image-container" style="aspect-ratio: 4/5; background-color: #222;">
+                        <img src="pack-hatriki.png" alt="Pack Hatriki" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="info">
+                        <h3 style="color: #fff; font-size: 1.2rem; text-transform: uppercase;">Pack Hatriki</h3>
+                        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4;">Combina equipos, personalización y retro como te dé la gana. 3 Camisetas top.</p>
+                        
+                        <div class="price-pack-row">
+                            <span class="new-price">Desde 50,00€</span>
+                        </div>
+                        
+                        <div class="order-form" style="border-color: #333;">
+                            <label style="color: #fff;">Indica las 3 camisetas y tus tallas:</label>
+                            <input type="text" class="perso-input" placeholder="Ej: Milan(L), España(M), Barça(L)" style="border-color: #bf0603;">
+                        </div>
+
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Hatriki', 50)">🛒 Añadir Pack</button>
+                    </div>
+                </div>
+
+                <!-- PACK 2: ORGULLO NACIONAL -->
+                <div class="card pack-card">
+                    <div class="pack-badge" style="background-color: #0076ff;">4x60€</div>
+                    <div class="image-container" style="aspect-ratio: 4/5; background-color: #222;">
+                        <img src="pack-orgullo.png" alt="Orgullo Nacional" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="info">
+                        <h3 style="color: #fff; font-size: 1.2rem; text-transform: uppercase;">Orgullo Nacional</h3>
+                        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4;">Defiende tus colores. 4 equipaciones. Puedes meter camisetas de tu equipo sin problema.</p>
+                        
+                        <div class="price-pack-row">
+                            <span class="new-price">Desde 60,00€</span>
+                        </div>
+                        
+                        <div class="order-form" style="border-color: #333;">
+                            <label style="color: #fff;">Indica las 4 camisetas y tus tallas:</label>
+                            <input type="text" class="perso-input" placeholder="Ej: España(M), Francia(L), Betis(M)..." style="border-color: #bf0603;">
+                        </div>
+
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Orgullo Nacional', 60)">🛒 Añadir Pack</button>
+                    </div>
+                </div>
+
+                <!-- PACK 3: LOS LEONES -->
+                <div class="card pack-card">
+                    <div class="pack-badge" style="background-color: #1aa34a;">  4+1 GRATIS</div>
+                    <div class="image-container" style="aspect-ratio: 4/5; background-color: #222;">
+                       <img src="pack-leones.png" alt="Los Leones" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="info">
+                        <h3 style="color: #fff; font-size: 1.2rem; text-transform: uppercase;">Los Leones</h3>
+                        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4;">Pagas 4 y te llevas 5. La combinación perfecta para ti y tus colegas.</p>
+                        
+                        <div class="price-pack-row">
+                            <span class="new-price">Desde 70,00€</span>
+                        </div>
+                        
+                        <div class="order-form" style="border-color: #333;">
+                            <label style="color: #fff;">Indica las 4 camisetas y tallas:</label>
+                            <input type="text" class="perso-input" placeholder="Escribe aquí tus 4 opciones" style="border-color: #bf0603;">
+                        </div>
+
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Los Leones', 70)">🛒 Añadir Pack</button>
+                    </div>
+                </div>
+
+                <!-- PACK 4: LOS CUQUITOS -->
+                <div class="card pack-card">
+                    <div class="pack-badge" style="background-color: #9d00ff;">KIT TOTAL</div>
+                    <div class="image-container" style="aspect-ratio: 4/5; background-color: #222;">
+                        <img src="pack-cuquitos.png" alt="Los Cuquitos" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="info">
+                        <h3 style="color: #fff; font-size: 1.2rem; text-transform: uppercase;">Los Cuquitos</h3>
+                        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4;">Set completo de Camiseta + Pantalón a juego. ¡Más opciones disponibles!</p>
+                        
+                        <div class="price-pack-row">
+                            <span class="new-price">Desde 40,00€</span>
+                        </div>
+                        
+                        <div class="order-form" style="border-color: #333;">
+                            <label style="color: #fff;">¿Qué equipo y talla necesitas?</label>
+                            <input type="text" class="perso-input" placeholder="Ej: España Completo talla S" style="border-color: #bf0603;">
+                        </div>
+
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Los Cuquitos', 40)">🛒 Añadir Kit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        <div id="camisetas" class="category-section">
+            <h2 class="category-title">Mundial</h2>
+            <div class="grid">
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="alemania/delante.jpg" alt="Alemania"><img src="alemania/detras.jpg" alt="Alemania"></div>
+                        <div class="image-slider variant-away"><img src="alemaniav/delante.jpg" alt="Alemania"><img src="alemaniav/detras.jpg" alt="Alemania"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Alemania</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #f6fafb;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #0b0087;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Ej: OZZ 10"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches del Torneo (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+                        
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <span class="trend-badge top-sales">🔥 TOP VENTAS</span>
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="argentina/argentina_delante.jpg" alt="Argentina"><img src="argentina/argentina_detras.jpg" alt="Argentina"></div>
+                        <div class="image-slider variant-away"><img src="argentinav/delante.jpg" alt="Argentina"><img src="argentinav/detras.jpg" alt="Argentina"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Argentina</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #16b5d8;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #0b0087;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Ej: MESSI 10"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches del Torneo (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="belgica/delante.jpg"><img src="belgica/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="belgicav/delante.jpg"><img src="belgicav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Bélgica</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #ff2600;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #7ac9f1;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <span class="trend-badge top-sales">🔥 TOP VENTAS</span>
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="brasil/delante.jpg"><img src="brasil/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="brasilv/delante.jpg"><img src="brasilv/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Brasil</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #fff700;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #0b0087;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="colombia/delante.jpg"><img src="colombia/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="colombiav/delante.jpg"><img src="colombiav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Colombia</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #ead700;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #0775a8;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="croacia/delante.jpg"><img src="croacia/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="croaciav/delante.jpg"><img src="croaciav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Croacia</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #eb2f2f;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #052489;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <span class="trend-badge top-sales">🔥 TOP VENTAS</span>
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="españa/delante.jpg"><img src="españa/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="españav/delante.jpg"><img src="españav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>España</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #bf0603;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #ffffff;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="francia/delante.jpg"><img src="francia/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="franciav/delante.jpg"><img src="franciav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Francia</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #001692;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #87efef;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="inglaterra/delante.jpg"><img src="inglaterra/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="inglaterrav/delante.jpg"><img src="inglaterrav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Inglaterra</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #ffffff;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #e00707;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="italia/delante.jpg"><img src="italia/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="italiav/delante.jpg"><img src="italiav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Italia</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #0303df;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #feffff;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <span class="trend-badge new">✨ NUEVO DROP</span>
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="japon/delante.jpg"><img src="japon/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="japonv/delante.jpg"><img src="japonv/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Japón</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #001692;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #ffffff;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="marruecos/delante.jpg"><img src="marruecos/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="marruecosv/delante.jpg"><img src="marruecosv/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Marruecos</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #e10909;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #ffffff;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="mexico/delante.jpg"><img src="Mexico/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="mexicov/delante.jpg"><img src="mexicov/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>México</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #01661a;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #ffffff;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="holanda/delante.jpg"><img src="holanda/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="holandav/delante.jpg"><img src="holandav/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Paises Bajos</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #ff6200;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #ffffff;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="portugal/delante.jpg"><img src="portugal/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="portugalv/delante.jpg"><img src="portugalv/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Portugal</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #b10505;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #34dddd;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" data-active-version="Fan" data-active-variant="Local">
+                    <div class="image-container">
+                        <button class="nav-arrow prev" onclick="moveSlider(this, -1)">&#10094;</button>
+                        <button class="nav-arrow next" onclick="moveSlider(this, 1)">&#10095;</button>
+                        <div class="image-slider variant-local active"><img src="uruguay/delante.jpg"><img src="uruguay/detras.jpg"></div>
+                        <div class="image-slider variant-away"><img src="uruguayv/delante.jpg"><img src="uruguayv/detras.jpg"></div>
+                    </div>
+                    <div class="info">
+                        <h3>Uruguay</h3>
+                        <div class="variant-selector"><span class="variant-dot active" style="background-color: #5bb9fd;" onclick="switchVariant(this, 'variant-local', 'Local')"></span><span class="variant-dot" style="background-color: #2404de;" onclick="switchVariant(this, 'variant-away', 'Visitante')"></span></div>
+                        <div class="version-selector"><button class="version-btn active" onclick="switchVersion(this, 'Fan', 20)">Versión Fan</button><button class="version-btn" onclick="switchVersion(this, 'Jugador', 22)">Versión Jugador</button></div>
+                        <div class="price-row"><span class="price">20,00€</span><span class="status">Disponible</span></div>
+                        
+                        <div class="order-form">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;"><label>Talla</label><select class="talla-select"><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option></select></div>
+                                <div style="flex: 2;"><label>Personalizar (+1€)</label><input type="text" class="perso-input" placeholder="Nombre y Nº"></div>
+                            </div>
+                            <label class="checkbox-container"><input type="checkbox" class="parches-check"> Añadir Parches (+1€)</label>
+                            <label class="checkbox-container" style="margin-top: 5px;"><input type="checkbox" class="pantalon-check"> Añadir Pantalón a juego (+5€)</label>
+                        </div>
+
+                        <span class="size-link" onclick="openSizeModal()">📏 Ver Guía de Tallas</span>
+                        <button class="btn-order" onclick="addToCart(this)">🛒 Añadir al Pedido</button>
+                    </div>
+                </div>
+
+                <div class="card" style="border: 1px dashed #333;">
+                    <div class="image-container"><img src="mundial.jpg" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;"></div>
+                    <div class="info" style="display: flex; flex-direction: column; height: calc(100% - 100px); justify-content: space-between;">
+                        <div>
+                            <h3>¿Buscas otra selección?</h3>
+                            <p style="color: #666; font-size: 0.8rem; margin-top: 6px; line-height: 1.4;">Tenemos los catálogos completos de las 48 selecciones del Mundial bajo pedido directo.</p>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <a href="https://wa.me/34635062811?text=¡Buenas!%20Estoy%20buscando%20la%20camiseta%20de%20una%20selección%20que%20no%20veo%20en%20la%20web." class="btn-order" target="_blank" style="background-color: #1aa34a; color: #fff;">Consultar Disponibilidad</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="retro" class="category-section" style="display: none;"><h2 class="category-title">⏳ Colección Retro</h2><div class="grid"></div></div>
+        <div id="chandales" class="category-section" style="display: none;"><h2 class="category-title">🎽 Chándales</h2><div class="grid"></div></div>
+        <div id="vestir" class="category-section" style="display: none;"><h2 class="category-title">👟 Ropa para Vestir</h2><div class="grid"></div></div>
+        <div id="f1" class="category-section" style="display: none;"><h2 class="category-title">🏎️ Fórmula 1</h2><div class="grid"></div></div>
+        <div id="nba" class="category-section" style="display: none;"><h2 class="category-title">🏀 NBA</h2><div class="grid"></div></div>
+    </div>
+
+    <div class="reviews-section">
+        <h2 class="category-title" style="margin-top:0; border-bottom: 1px solid #1a1a1a;">Opiniones de la Comunidad</h2>
+        <div class="reviews-grid">
+            <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"La camiseta de Japón en versión jugador es una locura. Los detalles termosellados son idénticos a la original. Envío rápido."</p><h4>Adrian M.<span>• Verificado</span></h4></div>
+            <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Tenía dudas con la talla para la de España local pero con la guía acerté de pleno. Calidad 10/10, repetiré seguro con un chándal."</p><h4>Alfredo M.<span>• Verificado</span></h4></div>
+            <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"Trato brutal por WhatsApp, me resolvieron las dudas al instante. El paquete llegó perfecto y el envío gratis se agradece muchísimo."</p><h4>Pedro O.<span>• Verificado</span></h4></div>
+        </div>
+    </div>
+
+    <div class="trust-section">
+        <div class="trust-item"><span class="trust-icon">🚀</span><h4>Entrega Estimada</h4><p>Tu pedido llegará a casa <strong class="dynamic-delivery-date" style="color: #00ff66;"></strong>.</p></div>
+        <div class="trust-item"><span class="trust-icon">🛡️</span><h4>Pago 100% Seguro</h4><p>Aceptamos Bizum, PayPal y transferencia bancaria para tu tranquilidad.</p></div>
+        <div class="trust-item"><span class="trust-icon">💬</span><h4>Soporte Directo 24/7</h4><p>Atención totalmente personalizada por WhatsApp para resolver cualquier duda.</p></div>
+    </div>
+
+    <div class="social-section">
+        <h4 style="color: #fff; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Síguenos en redes</h4>
+        <div class="social-links">
+            <a href="https://instagram.com/ozz.att" target="_blank" class="social-icon" title="Instagram OZZ">
+                <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            </a>
+            <a href="https://tiktok.com/@ozz.att" target="_blank" class="social-icon" title="TikTok OZZ">
+                <svg viewBox="0 0 448 512"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 OZZ ARCHIVE. Catálogo Privado.</footer>
+
+    <div id="size-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSizeModal()">&times;</span>
+            <h3>📏 Guía de Tallas Oficial (cm)</h3>
+            <p style="color: #666; font-size: 0.85rem; margin-bottom: 15px; margin-top: 5px;">Compara las medidas con una camiseta de tu armario.</p>
+            <table class="size-table">
+                <thead><tr><th>Talla</th><th>Ancho (Axila)</th><th>Largo (Hombro)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>S</strong></td><td>50 cm</td><td>70 cm</td></tr>
+                    <tr><td><strong>M</strong></td><td>52 cm</td><td>72 cm</td></tr>
+                    <tr><td><strong>L</strong></td><td>54 cm</td><td>74 cm</td></tr>
+                    <tr><td><strong>XL</strong></td><td>56 cm</td><td>76 cm</td></tr>
+                    <tr><td><strong>XXL</strong></td><td>58 cm</td><td>78 cm</td></tr>
+                </tbody>
+            </table>
+            <p style="color: #ffcc00; font-size: 0.8rem; margin-top: 15px; font-weight: 600; line-height: 1.4;">⚠️ CONSEJO OZZ: La Versión Jugador viene cortada atléticamente. Si eliges esa calidad, recomendamos pedir UNA TALLA MÁS.</p>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="toggleCart()">&times;</span>
+            <h3 style="margin-bottom: 15px;">🛒 Tu Pedido</h3>
+            
+            <div id="cart-items-container" style="max-height: 40vh; overflow-y: auto; margin-bottom: 15px;"></div>
+
+            <div class="discount-box">
+                <input type="text" id="discount-input" placeholder="Código promo">
+                <button onclick="applyDiscount()">Aplicar</button>
+            </div>
+            <div class="discount-message" id="discount-msg">¡Código OZZ10 aplicado! (-10%)</div>
+            
+            <div style="border-top: 1px solid #333; padding-top: 15px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; font-size: 1.2rem;">
+                    <span>Total:</span>
+                    <span id="cart-total-price" style="color: #ffffff;">0,00€</span>
+                </div>
+                <p style="color: #00ff66; font-size: 0.85rem; text-align: center; margin-bottom: 15px;">
+                    ⏳ Llegada a casa: <strong class="dynamic-delivery-date"></strong>
+                </p>
+                <button class="btn-order" style="background-color: #25d366; color: white;" onclick="sendWhatsAppOrder()">
+                    📲 Enviar Pedido Completo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/34635062811?text=¡Buenas!%20Tengo%20una%20duda%20general." class="whatsapp-floating" target="_blank" title="Dudas Generales">
+        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l141.9-37.2c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-84.4 22.1 22.5-82.3-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </a>
+    <div class="cart-floating" onclick="toggleCart()">🛒<div class="cart-badge" id="cart-count">0</div></div>
+
+    <nav class="mobile-bottom-nav">
+        <div class="mobile-nav-item active" onclick="window.scrollTo({top:0, behavior:'smooth'})"><svg viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-11 0-22-3.5-30.8-10.1l-2.3-1.8c-6.1-4.9-10.7-11.5-13.3-19.1L383 381.7c-1.6-4.6-6-7.7-11-7.7h-96c-5 0-9.4 3.1-11 7.7l-26.6 99.3c-2.6 7.6-7.2 14.2-13.3 19.1l-2.3 1.8c-8.8 6.6-19.8 10.1-30.8 10.1H72c-22.1 0-40-17.9-40-40v-16.2c-.3-2.7-.5-5.4-.5-8.1L32.7 287.6H.5c-18 0-32-15-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 11 15 11 24z"/></svg><span>Inicio</span></div>
+        <div class="mobile-nav-item" onclick="document.getElementById('search-bar').focus(); window.scrollTo({top:0, behavior:'smooth'})"><svg viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg><span>Buscar</span></div>
+        <a href="https://instagram.com/ozz.att" target="_blank" class="mobile-nav-item" style="color: #888;">
+            <svg viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+            <span>Instagram</span>
+        </a>
+        <div class="mobile-nav-item" onclick="toggleCart()"><svg viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg><span>Carrito</span><div class="mobile-cart-badge" id="mobile-cart-count">0</div></div>
+    </nav>
+
+    <script>
+        // INIT
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => { const s = document.getElementById('splash-screen'); if(s){ s.classList.add('fade-out'); setTimeout(()=>s.style.display='none', 800); } }, 1500); 
+            initDynamicDates();
+        });
+
+        function initDynamicDates() {
+            const today = new Date();
+            const minDate = new Date(today); minDate.setDate(today.getDate() + 10);
+            const maxDate = new Date(today); maxDate.setDate(today.getDate() + 15);
+            const opt = { day: 'numeric', month: 'long' };
+            document.querySelectorAll('.dynamic-delivery-date').forEach(el => el.textContent = `entre el ${minDate.toLocaleDateString('es-ES', opt)} y el ${maxDate.toLocaleDateString('es-ES', opt)}`);
+        }
+
+        // NAVEGACIÓN Y FILTROS
+        // NAVEGACIÓN Y FILTROS ACTUALIZADO
+        function filterCategory(id, btn) {
+            document.getElementById('search-bar').value = '';
+            document.querySelectorAll('.grid .card').forEach(c => c.style.display = "");
+            
+            // Ocultamos todas las secciones
+            document.querySelectorAll('.category-section').forEach(s => s.style.display = 'none');
+            
+            // Mostramos solo la que toca (si existe)
+            if(document.getElementById(id)) {
+                document.getElementById(id).style.display = 'block';
+            }
+
+            // Actualizar menú superior
+            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+            if(btn && btn.classList) btn.classList.add('active');
+            
+            // Actualizar menú móvil
+            document.querySelectorAll('.mobile-nav-item').forEach(i => i.classList.remove('active'));
+            if(btn && btn.tagName === 'DIV') btn.classList.add('active');
+            
+            // Subir arriba del todo suavemente al cambiar
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        function moveSlider(b, dir) { const c = b.parentElement.querySelector('.image-slider.active'); if(c) c.scrollBy({ left: c.clientWidth * dir, behavior: 'smooth' }); }
+        function switchVariant(d, vClass, vLabel) { const c = d.closest('.card'); c.querySelectorAll('.variant-dot').forEach(x => x.classList.remove('active')); d.classList.add('active'); c.querySelectorAll('.image-slider').forEach(s => s.classList.remove('active')); const ts = c.querySelector(`.${vClass}`); ts.classList.add('active'); ts.scrollTo({ left: 0 }); c.setAttribute('data-active-variant', vLabel); }
+        function switchVersion(b, vLabel, p) { const c = b.closest('.card'); c.querySelectorAll('.version-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); const pe = c.querySelector('.price'); if(pe) pe.textContent = `${p},00€`; c.setAttribute('data-active-version', vLabel); }
+        function searchProducts() { const i = document.getElementById('search-bar').value.toLowerCase(); if(i.length>0) document.querySelectorAll('.category-section').forEach(s=>s.style.display='block'); document.querySelectorAll('.grid .card').forEach(c=>{ const t=c.querySelector('h3'); if(t&&(t.textContent.toLowerCase().includes(i)||c.style.border.includes("dashed"))) c.style.display=""; else if(t) c.style.display="none"; }); }
+        function openSizeModal() { document.getElementById('size-modal').style.display = 'flex'; }
+        function closeSizeModal() { document.getElementById('size-modal').style.display = 'none'; }
+        window.onclick = function(e) { if(e.target.classList.contains('modal')) e.target.style.display = 'none'; }
+
+        // 🛒 CARRITO Y DESCUENTOS
+        let cart = [];
+        let discountMultiplier = 0; 
+
+        function addToCart(btn) {
+            const card = btn.closest('.card');
+            let title = card.querySelector('h3').textContent.trim();
+            if (title.toLowerCase().includes("paises bajos")) title = "Holanda";
+
+            const variant = card.getAttribute('data-active-variant') || 'Local';
+            const version = card.getAttribute('data-active-version') || 'Fan';
+            
+            let finalPrice = version === 'Jugador' ? 22 : 20;
+            const talla = card.querySelector('.talla-select').value;
+            const perso = card.querySelector('.perso-input').value.trim();
+            const parches = card.querySelector('.parches-check').checked;
+            const pantalon = card.querySelector('.pantalon-check').checked; 
+
+            if (perso !== "") finalPrice += 1;
+            if (parches) finalPrice += 1;
+            if (pantalon) finalPrice += 5; 
+
+            cart.push({ title, variant, version, talla, perso, parches, pantalon, price: finalPrice });
+
+            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('mobile-cart-count').textContent = cart.length;
+
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "✅ Añadido";
+            btn.style.backgroundColor = "#00ff66";
+            btn.style.color = "#000";
+            setTimeout(() => { btn.innerHTML = originalText; btn.style.backgroundColor = "#ffffff"; }, 1200);
+
+            renderCart();
+        }
+
+        function applyDiscount() {
+            const input = document.getElementById('discount-input').value.trim().toUpperCase();
+            const msg = document.getElementById('discount-msg');
+            if(input === 'OZZ10') { discountMultiplier = 0.10; msg.textContent = "¡Código OZZ10 aplicado! (-10%)"; msg.style.display = "block"; msg.style.color = "#00ff66"; } 
+            else { discountMultiplier = 0; msg.textContent = "Código no válido"; msg.style.display = "block"; msg.style.color = "#ff4444"; }
+            renderCart();
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            if (cart.length === 0) { container.innerHTML = "<p style='color:#888; text-align:center; font-style:italic;'>Tu carrito está vacío.</p>"; document.getElementById('cart-total-price').textContent = "0,00€"; return; }
+
+            let html = ""; let subtotal = 0;
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                html += `
+                <div style="background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 10px; position: relative; border: 1px solid #333;">
+                    <span style="position: absolute; top: 10px; right: 15px; color: #ff4444; font-size: 1.2rem; cursor: pointer; font-weight: bold;" onclick="removeFromCart(${index})">&times;</span>
+                    <strong style="color: #fff; font-size: 1rem;">${item.title} (${item.variant})</strong>
+                    <div style="color: #ccc; font-size: 0.85rem; margin-top: 6px; line-height: 1.4;">
+                        Versión: ${item.version} | Talla: <strong style="color:white;">${item.talla}</strong><br>
+                        ${item.perso ? `Personalización: <span style="color:#00ff66;">${item.perso}</span> (+1€)<br>` : ''}
+                        ${item.parches ? `Parches del torneo: <span style="color:#00ff66;">Sí</span> (+1€)<br>` : ''}
+                        ${item.pantalon ? `Pantalón a juego: <span style="color:#00ff66;">Sí</span> (+5€)<br>` : ''}
+                    </div>
+                    <div style="color: #fff; font-weight: 800; font-size: 1.1rem; margin-top: 8px;">${item.price},00€</div>
+                </div>`;
+            });
+            container.innerHTML = html;
+
+            let discountAmount = subtotal * discountMultiplier;
+            let total = subtotal - discountAmount;
+            let totalHtml = `${total.toFixed(2).replace('.', ',')}€`;
+            if(discountMultiplier > 0) totalHtml = `<span style="text-decoration: line-through; color: #888; font-size: 0.9rem; margin-right: 8px;">${subtotal},00€</span><span style="color: #00ff66;">${total.toFixed(2).replace('.', ',')}€</span>`;
+            document.getElementById('cart-total-price').innerHTML = totalHtml;
+        }
+
+        function removeFromCart(index) { cart.splice(index, 1); document.getElementById('cart-count').textContent = cart.length; document.getElementById('mobile-cart-count').textContent = cart.length; renderCart(); }
+        function toggleCart() { const modal = document.getElementById('cart-modal'); modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex'; renderCart(); }
+
+        // 📲 WHATSAPP SÚPER DETALLADO
+        // 📲 WHATSAPP SÚPER DETALLADO (AHORA SOPORTA PACKS)
+        function sendWhatsAppOrder() {
+            if(cart.length === 0) return;
+            let subtotal = 0;
+            let text = "¡Buenas OZZ ARCHIVE! 🛒 Quiero realizar el siguiente pedido seguro:\n\n";
+            
+            cart.forEach((item, idx) => {
+                subtotal += item.price;
+                
+                if (item.version === 'Pack Especial') {
+                    // Si el cliente ha metido un Pack
+                    text += `*${idx + 1}. 📦 ${item.title}*\n`;
+                    text += `🔹 Opciones elegidas: ${item.talla}\n`;
+                    text += `💶 Precio: ${item.price}€\n\n`;
+                } else {
+                    // Si el cliente ha metido una camiseta suelta
+                    text += `*${idx + 1}. 👕 Equipo: ${item.title} (${item.variant})*\n`;
+                    text += `🔹 Calidad: ${item.version}\n`;
+                    text += `🔹 Talla: ${item.talla}\n`;
+                    if(item.perso) text += `🔹 Personalización: ${item.perso}\n`;
+                    if(item.parches) text += `🔹 Parches: Sí\n`;
+                    if(item.pantalon) text += `🔹 Pantalón a juego: Sí (+5€)\n`; 
+                    text += `💶 Precio: ${item.price}€\n\n`;
+                }
+            });
+            
+            let discountAmount = subtotal * discountMultiplier;
+            let finalTotal = subtotal - discountAmount;
+            text += `*💰 SUBTOTAL: ${subtotal}€*\n`;
+            
+            if(discountMultiplier > 0) { 
+                text += `🎟️ Código OZZ10 aplicado: -${discountAmount.toFixed(2)}€\n`; 
+                text += `*🔥 TOTAL A PAGAR: ${finalTotal.toFixed(2)}€*\n`; 
+            } else { 
+                text += `*🔥 TOTAL A PAGAR: ${finalTotal}€*\n`; 
+            }
+            
+            text += `📦 Envío: ¡GRATIS!\n\n¿A qué cuenta os hago el Bizum/Pago?`;
+            
+            window.open(`https://wa.me/34635062811?text=${encodeURIComponent(text)}`, '_blank');
+        }
+        // AÑADIR PACKS AL CARRITO
+        function addPackToCart(btn, title, price) {
+            const card = btn.closest('.card');
+            const detailsInput = card.querySelector('.perso-input');
+            const details = detailsInput ? detailsInput.value.trim() : '';
+            
+            // Verificación para que no lo envíen vacío
+            if(details === "") {
+                detailsInput.style.borderColor = "#ff4444";
+                detailsInput.placeholder = "¡Escribe tus opciones aquí!";
+                setTimeout(() => { detailsInput.style.borderColor = "#bf0603"; }, 2000);
+                return;
+            }
+
+            // Metemos el pack en el array del carrito general
+            cart.push({ 
+                title: title, 
+                variant: 'OFERTA', 
+                version: 'Pack Especial', 
+                talla: details, // Usamos el campo de texto para guardar su elección
+                perso: '', 
+                parches: false, 
+                pantalon: false, 
+                price: price 
+            });
+
+            // Actualizamos los numeritos del carrito (PC y móvil)
+            document.getElementById('cart-count').textContent = cart.length;
+            document.getElementById('mobile-cart-count').textContent = cart.length;
+
+            // Animación del botón
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "✅ Pack Añadido";
+            btn.style.backgroundColor = "#00ff66";
+            btn.style.color = "#000";
+            setTimeout(() => { 
+                btn.innerHTML = originalText; 
+                btn.style.backgroundColor = "#bf0603"; 
+                btn.style.color = "white";
+            }, 1500);
+
+            renderCart();
+        }
+
+        // LUPA
+        document.querySelectorAll('.card').forEach(card => {
+            const container = card.querySelector('.image-container');
+            if (!container || card.style.border.includes("dashed")) return;
+            container.addEventListener('mousemove', function(e) {
+                const currentSlider = container.querySelector('.image-slider.active'); if (!currentSlider) return;
+                const images = currentSlider.querySelectorAll('img'); if (images.length === 0) return;
+                const width = currentSlider.clientWidth; const activeIndex = Math.round(currentSlider.scrollLeft / width); const img = images[activeIndex];
+                if (img) {
+                    const rect = container.getBoundingClientRect();
+                    const pctX = ((e.clientX - rect.left) / rect.width) * 100; const pctY = ((e.clientY - rect.top) / rect.height) * 100;
+                    img.style.transition = 'transform 0s'; img.style.transformOrigin = `${pctX}% ${pctY}%`; img.style.transform = 'scale(2.5)'; 
+                }
+            });
+            container.addEventListener('mouseleave', function() { container.querySelectorAll('img').forEach(img => { img.style.transition = 'transform 0.3s ease'; img.style.transform = 'scale(1)'; img.style.transformOrigin = 'center center'; }); });
+        });
+    </script>
+</body>
+</html>

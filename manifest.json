@@ -1,0 +1,21 @@
+{
+  "name": "OZZ KITS",
+  "short_name": "OZZ KITS",
+  "description": "Camisetas de fútbol de selecciones mundiales y retro. Versiones Fan y Jugador, packs exclusivos. Envío gratis.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "img/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

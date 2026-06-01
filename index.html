@@ -10,9 +10,22 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="logo.png">
     <link rel="icon" href="logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icons/icon-192x192.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>OZZ KITS | Catálogo Oficial</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Google Analytics (GA4) - Reemplaza G-XXXXXXXXXX con tu ID de medición -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
 
@@ -30,25 +43,38 @@
                 <a href="#" class="nav-link active" data-tab="inicio" onclick="filterCategory('inicio', this); return false;">INICIO</a>
                 <a href="#" class="nav-link" data-tab="packs" onclick="filterCategory('packs', this); return false;">PACKS</a>
                 <a href="#" class="nav-link" data-tab="camisetas" onclick="filterCategory('camisetas', this); return false;">MUNDIAL</a>
-                <a href="#" class="nav-link" data-tab="retro" onclick="filterCategory('retro', this); return false;">RETRO</a>
-                <a href="#" class="nav-link" data-tab="chandales" onclick="filterCategory('chandales', this); return false;">CHÁNDALES</a>
-                <a href="#" class="nav-link" data-tab="f1" onclick="filterCategory('f1', this); return false;">F1</a>
-                <a href="#" class="nav-link" data-tab="nba" onclick="filterCategory('nba', this); return false;">NBA</a>
+                <div class="nav-dropdown">
+                    <a href="#" class="nav-link" data-tab="retro" onclick="filterCategory('retro', this); return false;">RETRO ▾</a>
+                    <div class="dropdown-menu">
+                        <a href="#" onclick="filterRetroByLiga('Todas'); return false;">Todas</a>
+                        <a href="#" onclick="filterRetroByLiga('LaLiga'); return false;">LaLiga</a>
+                        <a href="#" onclick="filterRetroByLiga('Premier League'); return false;">Premier League</a>
+                        <a href="#" onclick="filterRetroByLiga('Serie A'); return false;">Serie A</a>
+                        <a href="#" onclick="filterRetroByLiga('Bundesliga'); return false;">Bundesliga</a>
+                        <a href="#" onclick="filterRetroByLiga('Mundial'); return false;">Mundial</a>
+                        <a href="#" onclick="filterRetroByLiga('Otras Ligas'); return false;">Otras Ligas</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-link" data-tab="chandales" onclick="filterCategory('chandales', this); return false;" style="display:none;">CHÁNDALES</a>
             </nav>
             <div class="header-actions">
-                <button class="icon-btn" onclick="document.getElementById('search-bar').focus();" title="Buscar">
+                <button class="icon-btn" onclick="toggleSearch()" title="Buscar">
                     <svg viewBox="0 0 512 512" width="20" height="20" fill="#ffffff"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
                 </button>
                 <button class="icon-btn cart-btn" onclick="toggleCart()" title="Carrito">
                     <svg viewBox="0 0 576 512" width="20" height="20" fill="#ffffff"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                     <span class="cart-count-badge" id="cart-count">0</span>
                 </button>
+                <button class="icon-btn" onclick="openWishlistModal()" title="Favoritos" style="position:relative;">
+                    <svg viewBox="0 0 512 512" width="20" height="20" fill="#ffffff"><path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9z"/></svg>
+                    <span class="cart-count-badge" id="wishlist-count" style="background:#e63946;">0</span>
+                </button>
             </div>
             <button class="mobile-menu-btn" onclick="document.querySelector('.header-nav').classList.toggle('open')">
                 <svg viewBox="0 0 448 512" width="24" height="24"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
             </button>
         </div>
-        <div class="search-bar-container">
+        <div class="search-bar-container" style="display:none;">
             <input type="text" id="search-bar" class="search-input" oninput="searchProducts()" placeholder="Buscar equipo o selección...">
         </div>
     </header>
@@ -59,24 +85,20 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>VISTE TU <span class="text-red">PASIÓN.</span><br>COLECCIONA <span class="text-red">HISTORIA.</span></h1>
-                    <p class="hero-subtitle">Kits exclusivos, retro y oficiales de fútbol, F1 y NBA. Calidad premium para verdaderos fans.</p>
+                    <p class="hero-subtitle">Kits de fútbol. Calidad premium para verdaderos fans.</p>
                     <button class="btn-hero" onclick="filterCategory('packs', document.querySelector('[data-tab=packs]'))">VER TODOS LOS PACKS <span class="arrow-right">→</span></button>
-                    <div class="hero-trust-row">
-                        <div class="hero-trust-item"><span class="ht-icon">🔒</span><span><strong>Pago 100% seguro</strong><br><small>Bizum, PayPal y transferencia</small></span></div>
-                        <div class="hero-trust-item"><span class="ht-icon">💬</span><span><strong>Soporte dedicado</strong><br><small>24/7 por WhatsApp</small></span></div>
-                        <div class="hero-trust-item"><span class="ht-icon">🛡️</span><span><strong>Garantía de calidad</strong><br><small>Productos premium</small></span></div>
-                    </div>
+
                 </div>
-                <div class="hero-images">
+                    <div class="hero-images">
                     <div class="hero-collage">
                         <div class="hero-panel panel-1">
-                            <img src="img/equipaciones/espa%C3%B1a/delante.jpg" alt="España" loading="lazy">
+                            <img src="img/banners/ronaldinho.jpg" alt="Ronaldinho" loading="lazy">
                         </div>
                         <div class="hero-panel panel-2">
-                            <img src="img/banners/banner-f1.jpg" alt="F1" loading="lazy">
+                            <img src="img/banners/Foto-Mundial.jpg" alt="España" loading="lazy">
                         </div>
                         <div class="hero-panel panel-3">
-                            <img src="img/banners/banner-nba.jpg" alt="NBA" loading="lazy">
+                            <img src="img/banners/la Bombonera.jpg" alt="La Bombonera" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -96,50 +118,32 @@
                     </div>
                     <div class="cat-footer"><a class="cat-link" href="#">VER PACKS <span>&rarr;</span></a></div>
                 </div>
-                <div class="category-card" onclick="filterCategory('retro', document.querySelector('[data-tab=retro]'))">
-                    <div class="cat-img-wrap"><img src="img/banners/banner-retro.jpg" alt="Retro" loading="lazy"></div>
-                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2 12 5 8 2 3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></div>
-                    <div class="cat-body">
-                        <h3>COLECCIÓN RETRO</h3>
-                        <p>Camisetas clásicas icónicas</p>
-                    </div>
-                    <div class="cat-footer"><a class="cat-link" href="#">VER COLECCIÓN <span>&rarr;</span></a></div>
-                </div>
                 <div class="category-card" onclick="filterCategory('camisetas', document.querySelector('[data-tab=camisetas]'))">
                     <div class="cat-img-wrap"><img src="img/banners/banner-mundial.jpg" alt="Mundial" loading="lazy"></div>
-                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20"/><path d="M2 12a10 10 0 0 0 20 0"/><path d="M7 5.5 17 18.5"/><path d="M17 5.5 7 18.5"/></svg></div>
                     <div class="cat-body">
                         <h3>CATÁLOGO MUNDIAL</h3>
                         <p>Todas las selecciones y mundiales</p>
                     </div>
                     <div class="cat-footer"><a class="cat-link" href="#">VER CATÁLOGO <span>&rarr;</span></a></div>
                 </div>
-                <div class="category-card" onclick="filterCategory('chandales', document.querySelector('[data-tab=chandales]'))">
-                    <div class="cat-img-wrap"><img src="img/banners/Ofertas.jpg" alt="Chándales" loading="lazy"></div>
-                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                <div class="category-card" onclick="filterCategory('retro', document.querySelector('[data-tab=retro]'))">
+                    <div class="cat-img-wrap"><img src="img/banners/Retro.jpg" alt="Retro" loading="lazy"></div>
+                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4 3 3 5 8 8 6 12 9 16 6 19 8 21 3 18 4 18 21 6 21Z"/></svg></div>
+                    <div class="cat-body">
+                        <h3>COLECCIÓN RETRO</h3>
+                        <p>Camisetas clásicas icónicas</p>
+                    </div>
+                    <div class="cat-footer"><a class="cat-link" href="#">VER COLECCIÓN <span>&rarr;</span></a></div>
+                </div>
+                <div class="category-card" onclick="filterCategory('chandales', document.querySelector('[data-tab=chandales]'))" style="display:none;">
+                    <div class="cat-img-wrap"><img src="img/banners/Chandal.jpg" alt="Chándales" loading="lazy"></div>
+                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M3 18 12 9l9 9"/><path d="M21 20H3a1 1 0 0 1-1-1v0a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v0a1 1 0 0 1-1 1z"/></svg></div>
                     <div class="cat-body">
                         <h3>CHÁNDALES</h3>
                         <p>Estilo y comodidad premium</p>
                     </div>
                     <div class="cat-footer"><a class="cat-link" href="#">VER CHÁNDALES <span>&rarr;</span></a></div>
-                </div>
-                <div class="category-card" onclick="filterCategory('f1', document.querySelector('[data-tab=f1]'))">
-                    <div class="cat-img-wrap"><img src="img/banners/banner-f1.jpg" alt="F1" loading="lazy"></div>
-                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
-                    <div class="cat-body">
-                        <h3>FÓRMULA 1</h3>
-                        <p>Escuderías y pilotos oficiales</p>
-                    </div>
-                    <div class="cat-footer"><a class="cat-link" href="#">VER F1 <span>&rarr;</span></a></div>
-                </div>
-                <div class="category-card" onclick="filterCategory('nba', document.querySelector('[data-tab=nba]'))">
-                    <div class="cat-img-wrap"><img src="img/banners/banner-nba.jpg" alt="NBA" loading="lazy"></div>
-                    <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-                    <div class="cat-body">
-                        <h3>NBA</h3>
-                        <p>Equipaciones oficiales NBA</p>
-                    </div>
-                    <div class="cat-footer"><a class="cat-link" href="#">VER NBA <span>&rarr;</span></a></div>
                 </div>
             </div>
         </section>
@@ -156,29 +160,21 @@
                     </div>
                     <div class="info">
                         <h3>Pack Hatriki</h3>
-                        <p class="pack-desc">Combina equipos, personalización y retro como te dé la gana. 3 Camisetas top.</p>
-                        <div class="price-pack-row"><span class="new-price">Desde 50,00€</span></div>
-                        <div class="order-form">
-                            <label>Indica las 3 camisetas y tus tallas:</label>
-                            <input type="text" class="perso-input" placeholder="Ej: Milan(L), España(M), Barça(L)">
-                        </div>
-                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Hatriki', 50)">🛒 Añadir Pack</button>
+                        <p class="pack-desc">3 camisetas top. Combínalas como quieras.</p>
+                        <div class="price-pack-row"><span class="new-price">50,00€</span></div>
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="openPackModal('Pack Hatriki', 3, 50)">🛒 Añadir productos al pack</button>
                     </div>
                 </div>
                 <div class="card pack-card">
-                    <div class="pack-badge" style="background-color: #0076ff;">4x60€</div>
+                    <div class="pack-badge" style="background-color: #0076ff;">4x65€</div>
                     <div class="image-container" style="aspect-ratio: 4/5;">
                         <img src="img/packs/pack-orgullo.png" alt="Orgullo Nacional" loading="lazy">
                     </div>
                     <div class="info">
                         <h3>Orgullo Nacional</h3>
-                        <p class="pack-desc">Defiende tus colores. 4 equipaciones. Puedes meter camisetas de tu equipo sin problema.</p>
-                        <div class="price-pack-row"><span class="new-price">Desde 60,00€</span></div>
-                        <div class="order-form">
-                            <label>Indica las 4 camisetas y tus tallas:</label>
-                            <input type="text" class="perso-input" placeholder="Ej: España(M), Francia(L), Betis(M)...">
-                        </div>
-                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Orgullo Nacional', 60)">🛒 Añadir Pack</button>
+                        <p class="pack-desc">Defiende tus colores. 4 equipaciones de selecciones.</p>
+                        <div class="price-pack-row"><span class="new-price">65,00€</span></div>
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="openPackModal('Orgullo Nacional', 4, 65)">🛒 Añadir productos al pack</button>
                     </div>
                 </div>
                 <div class="card pack-card">
@@ -189,15 +185,23 @@
                     <div class="info">
                         <h3>Los Leones</h3>
                         <p class="pack-desc">Pagas 4 y te llevas 5. La combinación perfecta para ti y tus colegas.</p>
-                        <div class="price-pack-row"><span class="new-price">Desde 70,00€</span></div>
-                        <div class="order-form">
-                            <label>Indica las 4 camisetas y tallas:</label>
-                            <input type="text" class="perso-input" placeholder="Escribe aquí tus 4 opciones">
-                        </div>
-                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Los Leones', 70)">🛒 Añadir Pack</button>
+                        <div class="price-pack-row"><span class="new-price">75,00€</span></div>
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="openPackModal('Los Leones', 5, 75)">🛒 Añadir productos al pack</button>
                     </div>
                 </div>
                 <div class="card pack-card">
+                    <div class="pack-badge" style="background-color: #b388ff;">3 POR 70€</div>
+                    <div class="image-container" style="aspect-ratio: 4/5;">
+                        <img src="img/packs/pack-retro.png" alt="Pack Retro" loading="lazy">
+                    </div>
+                    <div class="info">
+                        <h3>Pack Retro</h3>
+                        <p class="pack-desc">3 camisetas retro clásicas. Fútbol con historia y estilo único.</p>
+                        <div class="price-pack-row"><span class="new-price">70,00€</span></div>
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="openPackModal('Pack Retro', 3, 70)">🛒 Añadir productos al pack</button>
+                    </div>
+                </div>
+                <div class="card pack-card" style="display:none;">
                     <div class="pack-badge" style="background-color: #9d00ff;">KIT TOTAL</div>
                     <div class="image-container" style="aspect-ratio: 4/5;">
                         <img src="img/packs/pack-cuquitos.png" alt="Los Cuquitos" loading="lazy">
@@ -205,12 +209,8 @@
                     <div class="info">
                         <h3>Los Cuquitos</h3>
                         <p class="pack-desc">Set completo de Camiseta + Pantalón a juego. ¡Más opciones disponibles!</p>
-                        <div class="price-pack-row"><span class="new-price">Desde 40,00€</span></div>
-                        <div class="order-form">
-                            <label>¿Qué equipo y talla necesitas?</label>
-                            <input type="text" class="perso-input" placeholder="Ej: España Completo talla S">
-                        </div>
-                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="addPackToCart(this, 'Pack Los Cuquitos', 40)">🛒 Añadir Kit</button>
+                        <div class="price-pack-row"><span class="new-price">40,00€</span></div>
+                        <button class="btn-order" style="background-color: #bf0603; color: white;" onclick="openPackModal('Los Cuquitos', 1, 40)">🛒 Añadir producto con kit</button>
                     </div>
                 </div>
             </div>
@@ -222,64 +222,65 @@
         </div>
 
         <div id="retro" class="category-section" style="display: none;"><h2 class="section-title" style="margin-top: 40px;">COLECCIÓN <span class="text-red">RETRO</span></h2><div class="grid" id="grid-retro"></div></div>
-        <div id="chandales" class="category-section" style="display: none;"><h2 class="section-title" style="margin-top: 40px;">CHÁNDALES</h2><div class="grid" id="grid-chandales"></div></div>
+        <div id="chandales" class="category-section" style="display: none !important;"><h2 class="section-title" style="margin-top: 40px;">CHÁNDALES</h2><div class="grid" id="grid-chandales"></div></div>
         <div id="vestir" class="category-section" style="display: none;"><h2 class="section-title" style="margin-top: 40px;">ROPA PARA VESTIR</h2><div class="grid" id="grid-vestir"></div></div>
-        <div id="f1" class="category-section" style="display: none;"><h2 class="section-title" style="margin-top: 40px;">FÓRMULA <span class="text-red">1</span></h2><div class="grid" id="grid-f1"></div></div>
-        <div id="nba" class="category-section" style="display: none;"><h2 class="section-title" style="margin-top: 40px;"><span class="text-red">NBA</span></h2><div class="grid" id="grid-nba"></div></div>
+        <div id="search-results" class="category-section" style="display: none;"><h2 class="section-title">RESULTADOS DE <span class="text-red">BÚSQUEDA</span></h2><div class="grid" id="grid-search"></div></div>
+
+        <div id="producto-page" class="category-section" style="display: none;">
+            <button class="btn-back" onclick="closeProductPage()">← Volver</button>
+            <div id="producto-detail"></div>
+        </div>
     </div>
 
     <section class="reviews-section">
         <h2 class="section-title">LO QUE DICE NUESTRA <span class="text-red">COMUNIDAD</span></h2>
         <div class="reviews-carousel">
-            <button class="carousel-arrow carousel-prev" onclick="moveReviews(-1)">‹</button>
             <div class="reviews-track" id="reviews-track">
                 <div class="review-card">
                     <div class="review-stars">★★★★★</div>
-                    <p class="review-text">"La camiseta de Japón es increíble. Jugador a usar locura. La calidad, los materiales son brutales."</p>
-                    <div class="review-author"><strong>ADRIÁN M.</strong><span class="verified">VERIFICADO ✓</span></div>
+                    <p class="review-text">"La calidad de las camisetas es increíble, los materiales de primera. Repetiré seguro."</p>
+                    <div class="review-author"><strong>PEDRO O.</strong><span class="verified">VERIFICADO ✓</span></div>
                 </div>
                 <div class="review-card">
                     <div class="review-stars">★★★★★</div>
-                    <p class="review-text">"Tenía dudas con la talla pero en la Guía fue exacto, me llegó en 2 días. Calidad 10/10, repetiré seguro con otras selecciones."</p>
-                    <div class="review-author"><strong>ALFREDO H.</strong><span class="verified">VERIFICADO ✓</span></div>
+                    <p class="review-text">"Muy contento con mi pedido. Las costuras y los bordados son de otro nivel."</p>
+                    <div class="review-author"><strong>MIGUEL A.</strong><span class="verified">VERIFICADO ✓</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Buscaba una retro que no encontraba en ningún lado y aquí la tenían. Envío rápido y perfecto."</p>
+                    <div class="review-author"><strong>ANGEL O.</strong><span class="verified">VERIFICADO ✓</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"La camiseta de Japón es increíble. Versión Jugador a usar locura. La calidad, los materiales son brutales."</p>
+                    <div class="review-author"><strong>ADRIAN M.</strong><span class="verified">VERIFICADO ✓</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Tenía dudas con la talla pero en la Guía fue exacto, me llegó rápido. Calidad 10/10, repetiré seguro con otras selecciones."</p>
+                    <div class="review-author"><strong>ALFREDO M.</strong><span class="verified">VERIFICADO ✓</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"El pack Hatriki es un chollazo. Tres camisetas top a un precio que no tiene competencia."</p>
+                    <div class="review-author"><strong>JAVIER A.</strong><span class="verified">VERIFICADO ✓</span></div>
                 </div>
                 <div class="review-card">
                     <div class="review-stars">★★★★★</div>
                     <p class="review-text">"Trato brutal por WhatsApp, me resolvieron las dudas al instante. El paquete llegó perfecto y las camisetas son espectaculares."</p>
-                    <div class="review-author"><strong>PEDRO G.</strong><span class="verified">VERIFICADO ✓</span></div>
+                    <div class="review-author"><strong>ISMAEL A.</strong><span class="verified">VERIFICADO ✓</span></div>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Primera vez que compraba y la experiencia fue increíble. La camiseta quedó perfecta y el envío rápido."</p>
+                    <div class="review-author"><strong>NÉSTOR P.</strong><span class="verified">VERIFICADO ✓</span></div>
                 </div>
             </div>
-            <button class="carousel-arrow carousel-next" onclick="moveReviews(1)">›</button>
-        </div>
-        <div class="carousel-dots">
-            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
         </div>
     </section>
 
-    <section class="trust-section">
-        <div class="trust-grid">
-            <div class="trust-item">
-                <div class="trust-icon-wrap">🚚</div>
-                <h4>Entrega Estimada</h4>
-                <p>Tu pedido llega entre <strong class="dynamic-delivery-date" style="color: #e63946;"></strong></p>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon-wrap">🔒</div>
-                <h4>Pago 100% Seguro</h4>
-                <p>Aceptamos Bizum, PayPal y tarjetas bancarias</p>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon-wrap">💬</div>
-                <h4>Soporte Directo 24/7</h4>
-                <p>Atención personalizada por WhatsApp o email</p>
-            </div>
-            <div class="trust-item">
-                <div class="trust-icon-wrap">🛡️</div>
-                <h4>Garantía de Calidad</h4>
-                <p>Productos originales y máxima calidad garantizada</p>
-            </div>
-        </div>
-    </section>
+
 
     <section class="social-section">
         <h4 class="social-title">SÍGUENOS EN <span class="text-red">REDES</span></h4>
@@ -293,22 +294,60 @@
         </div>
     </section>
 
+    <section class="faq-section">
+        <div class="faq-inner">
+            <h2 class="section-title" style="margin-bottom:30px;">PREGUNTAS <span class="text-red">FRECUENTES</span></h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Cuánto tarda el envío?<span class="faq-arrow">+</span></div>
+                <div class="faq-answer">Entre 10 y 14 días laborables. El pedido se envía desde nuestro proveedor y llega directo a tu casa.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Cómo hago un pedido?<span class="faq-arrow">+</span></div>
+                <div class="faq-answer">Añade tus camisetas al carrito desde las categorías. Puedes agruparlas en un pack para ahorrar. Al finalizar, pulsa "Enviar Pedido Completo" y te redirigirá a WhatsApp para gestionar el pago.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Puedo devolver o cambiar una camiseta?<span class="faq-arrow">+</span></div>
+                <div class="faq-answer">Sí, tienes 14 días desde la recepción para devoluciones y cambios. El producto debe estar sin usar y en su embalaje original. Escríbenos por WhatsApp y lo gestionamos.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Cómo sé qué talla elegir?<span class="faq-arrow">+</span></div>
+                <div class="faq-answer">Usa nuestra Guía de Tallas en cada producto. Mide una camiseta que tengas y compárala con la tabla. Si eres de talla grande o prefieres un ajuste holgado, elige una talla más.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">¿Qué métodos de pago aceptan?<span class="faq-arrow">+</span></div>
+                <div class="faq-answer">Aceptamos <strong>Bizum</strong>, <strong>PayPal</strong> y <strong>transferencia bancaria</strong>. El pedido se confirma una vez recibido el pago.</div>
+            </div>
+        </div>
+    </section>
+
     <footer class="main-footer">
         <div class="footer-inner">
             <div class="footer-left">
                 <img src="logo.png" alt="OZZ KITS" class="footer-logo">
             </div>
             <div class="footer-links">
-                <a href="https://wa.me/34635062811?text=¡Buenas!%20Tengo%20una%20duda." target="_blank">Contacto WhatsApp</a>
+                <a href="https://wa.me/34635062811?text=¡Buenas!%20Tengo%20una%20duda." target="_blank">
+                    <svg viewBox="0 0 448 512" width="16" height="16" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l141.9-37.2c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-84.4 22.1 22.5-82.3-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                    Contacto WhatsApp
+                </a>
                 <a href="https://instagram.com/ozz.att" target="_blank">Instagram</a>
                 <a href="https://tiktok.com/@ozz.att" target="_blank">TikTok</a>
-                <a href="#">Envíos y Devoluciones</a>
+                <a href="#" onclick="document.querySelector('.faq-section')?.scrollIntoView({behavior:'smooth'});return false;">Envíos y Devoluciones</a>
             </div>
             <div class="footer-right">
                 © 2024 OZZ KITS. Todos los derechos reservados.
             </div>
         </div>
     </footer>
+
+    <div id="pack-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="closePackModal()">&times;</span>
+            <h3 style="margin-bottom: 5px;">Elige cómo añadir</h3>
+            <p id="pack-modal-product" style="color: #888; font-size: 0.9rem; margin-bottom: 20px;"></p>
+            <div id="pack-modal-options" style="display: flex; flex-direction: column; gap: 10px;"></div>
+        </div>
+    </div>
 
     <div id="size-modal" class="modal">
         <div class="modal-content">
@@ -329,6 +368,17 @@
         </div>
     </div>
 
+    <div id="discount-popup" class="modal" style="z-index: 9998;">
+        <div class="modal-content" style="max-width:420px;text-align:center;background:linear-gradient(135deg,#1a1a1a 0%,#0a0a0a 100%);border:1px solid #e63946;">
+            <div style="font-size:3rem;margin-bottom:10px;">🎉</div>
+            <h2 style="color:#fff;font-size:1.5rem;">10% <span class="text-red">OFF</span></h2>
+            <p style="color:#aaa;font-size:0.9rem;margin:10px 0 20px;">en tu primer pedido</p>
+            <div style="font-size:2.5rem;font-weight:800;color:#00ff66;margin-bottom:20px;">OZZ10</div>
+            <button class="btn-order" onclick="claimDiscount()" style="background-color:#e63946;width:100%;">¡LO QUIERO!</button>
+            <button onclick="closeDiscount()" style="background:none;border:none;color:#666;cursor:pointer;margin-top:12px;font-size:0.8rem;">No, gracias</button>
+        </div>
+    </div>
+
     <div id="cart-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="toggleCart()">&times;</span>
@@ -339,14 +389,25 @@
                 <button onclick="applyDiscount()">Aplicar</button>
             </div>
             <div class="discount-message" id="discount-msg"></div>
+            <div style="background:#0d1f0d;padding:10px 14px;border-radius:8px;margin:12px 0;border:1px solid #1aa34a;display:flex;align-items:center;gap:8px;">
+                <span style="font-size:1.2rem;">🚚</span>
+                <span style="color:#00ff66;font-size:0.85rem;font-weight:600;">Envío <strong>GRATIS</strong> en todos los pedidos</span>
+            </div>
+            <div id="cart-account-section" style="margin:12px 0;padding:12px;background:#151515;border-radius:8px;border:1px solid #222;">
+                <div style="font-size:0.85rem;color:#aaa;margin-bottom:8px;font-weight:600;">💾 GUARDAR / CARGAR CARRITO</div>
+                <div style="display:flex;gap:8px;">
+                    <input type="email" id="cart-email-input" placeholder="tu@email.com" style="flex:1;background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:8px 12px;color:#fff;font-size:0.8rem;">
+                    <button onclick="saveCartToAccount()" style="background:#333;border:none;border-radius:8px;color:#fff;padding:8px 14px;cursor:pointer;font-size:0.8rem;">Guardar</button>
+                    <button onclick="loadCartFromAccount()" style="background:#333;border:none;border-radius:8px;color:#fff;padding:8px 14px;cursor:pointer;font-size:0.8rem;">Cargar</button>
+                </div>
+                <div id="cart-account-msg" style="font-size:0.75rem;margin-top:6px;min-height:18px;"></div>
+            </div>
             <div style="border-top: 1px solid #333; padding-top: 15px;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; font-size: 1.2rem;">
                     <span>Total:</span>
                     <span id="cart-total-price" style="color: #ffffff;">0,00€</span>
                 </div>
-                <p style="color: #e63946; font-size: 0.85rem; text-align: center; margin-bottom: 15px;">
-                    Llegada a casa: <strong class="dynamic-delivery-date"></strong>
-                </p>
+
                 <button class="btn-order" style="background-color: #25d366; color: white;" onclick="sendWhatsAppOrder()">
                     📲 Enviar Pedido Completo
                 </button>
@@ -355,33 +416,78 @@
     </div>
 
     <a href="https://wa.me/34635062811?text=%C2%A1Buenas!%20Tengo%20una%20duda%20general." class="whatsapp-floating" target="_blank" title="Dudas Generales">
-        <svg viewBox="0 0 448 512" width="28" height="28"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l141.9-37.2c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-84.4 22.1 22.5-82.3-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" fill="#fff"/></svg>
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/><path d="M12.032 21.965c-2.181 0-4.23-.581-5.998-1.584L.548 22.24l1.875-5.46A9.94 9.94 0 012.032 12c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10zm0-18c-4.411 0-8 3.589-8 8a7.95 7.95 0 001.524 4.685l-.996 2.898 3.005-.975A7.94 7.94 0 0012.032 20c4.411 0 8-3.589 8-8s-3.589-8-8-8z"/></svg>
     </a>
+
+    <div id="wishlist-modal" class="modal">
+        <div class="modal-content" style="max-width:600px;">
+            <span class="close-modal" onclick="document.getElementById('wishlist-modal').style.display='none'">&times;</span>
+            <h3 style="margin-bottom:15px;">❤️ Mis <span class="text-red">Favoritos</span></h3>
+            <div id="wishlist-items" style="display:flex;flex-direction:column;gap:10px;max-height:50vh;overflow-y:auto;"></div>
+            <p id="wishlist-empty" style="color:#666;text-align:center;padding:30px;">No tienes favoritos guardados.</p>
+        </div>
+    </div>
 
     <script src="products.js"></script>
     <script>
+        history.scrollRestoration = 'manual';
         window.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
             setTimeout(() => { const s = document.getElementById('splash-screen'); if(s){ s.classList.add('fade-out'); setTimeout(()=>s.style.display='none', 500); } }, 900);
-            initDynamicDates();
             try { renderProductos(); } catch(e) { console.error('renderProductos ERROR:', e); }
+            setTimeout(function() { document.querySelector('.categories-grid')?.classList.add('cat-enter'); }, 400);
+            saveWishlist();
         });
 
-        function initDynamicDates() {
-            const today = new Date();
-            const minDate = new Date(today); minDate.setDate(today.getDate() + 10);
-            const maxDate = new Date(today); maxDate.setDate(today.getDate() + 15);
-            const opt = { day: 'numeric', month: 'long' };
-            document.querySelectorAll('.dynamic-delivery-date').forEach(el => el.textContent = `entre el ${minDate.toLocaleDateString('es-ES', opt)} y el ${maxDate.toLocaleDateString('es-ES', opt)}`);
+        function filterCategory(id, btn) {
+            if (window.location.hash) {
+                history.pushState(null, '', window.location.pathname);
+                currentProductKey = null;
+            }
+            document.getElementById('search-bar').value = '';
+            document.getElementById('search-results').style.display = 'none';
+            document.getElementById('grid-search').innerHTML = '';
+            var catSection = document.querySelector('.categories-section');
+            if (catSection && id !== 'inicio') {
+                catSection.classList.add('section-exit');
+            }
+            document.querySelectorAll('.category-section').forEach(function(s) {
+                if (s.id === id) {
+                    setTimeout(function() {
+                        s.style.display = 'block';
+                        s.classList.remove('section-enter');
+                        void s.offsetWidth;
+                        s.classList.add('section-enter');
+                    }, id === 'inicio' ? 0 : 150);
+                } else {
+                    s.style.display = 'none';
+                    s.classList.remove('section-enter');
+                }
+            });
+            if (catSection && id === 'inicio') {
+                catSection.classList.remove('section-exit');
+            }
+            document.querySelectorAll('.nav-link').forEach(function(t) { t.classList.remove('active'); });
+            if(btn && btn.classList) btn.classList.add('active');
+            if (id === 'inicio') {
+                document.querySelector('.categories-grid').style.opacity = '1';
+                document.querySelector('.categories-grid').style.transform = 'none';
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        function filterCategory(id, btn) {
-            document.getElementById('search-bar').value = '';
-            document.querySelectorAll('.grid .card').forEach(c => c.style.display = "");
-            document.querySelectorAll('.category-section').forEach(s => s.style.display = 'none');
-            if(document.getElementById(id)) document.getElementById(id).style.display = 'block';
-            document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
-            if(btn && btn.classList) btn.classList.add('active');
-            window.scrollTo({top: 0, behavior: 'smooth'});
+        function filterRetroByLiga(liga) {
+            filterCategory('retro', document.querySelector('[data-tab=retro]'));
+            document.querySelector('.header-nav').classList.remove('open');
+            var grid = document.getElementById('grid-retro');
+            grid.querySelectorAll('.liga-header, [data-liga]').forEach(function(el) {
+                if (el.classList.contains('liga-header')) {
+                    var hLiga = el.querySelector('.liga-name').textContent;
+                    el.style.display = (liga === 'Todas' || hLiga === liga) ? '' : 'none';
+                } else {
+                    el.style.display = (liga === 'Todas' || el.getAttribute('data-liga') === liga) ? '' : 'none';
+                }
+            });
         }
 
         function moveSlider(b, dir) { const c = b.parentElement.querySelector('.image-slider.active'); if(c) c.scrollBy({ left: c.clientWidth * dir, behavior: 'smooth' }); }
@@ -389,28 +495,142 @@
         function switchVersion(b, vLabel, p) { const c = b.closest('.card'); c.querySelectorAll('.version-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); const pe = c.querySelector('.price'); if(pe) pe.textContent = p + ',00€'; c.setAttribute('data-active-version', vLabel); c.setAttribute('data-price', p); }
         function normalizeText(str) { return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
 
+        function toggleSearch() {
+            var bar = document.getElementById('search-bar');
+            var container = bar.parentElement;
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+                bar.focus();
+            } else {
+                container.style.display = 'none';
+                bar.value = '';
+                searchProducts();
+            }
+        }
+
         function searchProducts() {
             const query = normalizeText(document.getElementById('search-bar').value.trim());
             const sections = document.querySelectorAll('.category-section');
-            const cards = document.querySelectorAll('.grid .card');
+            const searchGrid = document.getElementById('grid-search');
             if (query.length === 0) {
                 sections.forEach(s => s.style.display = 'none');
                 document.getElementById('inicio').style.display = 'block';
-                cards.forEach(c => c.style.display = '');
+                searchGrid.innerHTML = '';
+                document.getElementById('search-results').style.display = 'none';
                 document.querySelectorAll('.nav-link').forEach(t => t.classList.remove('active'));
                 const inicioTab = document.querySelector('[data-tab="inicio"]');
                 if (inicioTab) inicioTab.classList.add('active');
                 return;
             }
+            searchGrid.innerHTML = '';
             sections.forEach(s => s.style.display = 'none');
-            cards.forEach(c => {
+            document.querySelectorAll('.grid .card').forEach(c => {
                 const h3 = c.querySelector('h3');
-                if (!h3) { c.style.display = 'none'; return; }
-                c.style.display = normalizeText(h3.textContent).includes(query) ? '' : 'none';
+                if (h3 && normalizeText(h3.textContent).includes(query) && !c.closest('#chandales')) {
+                    searchGrid.appendChild(c.cloneNode(true));
+                }
             });
-            sections.forEach(s => {
-                if (s.querySelectorAll('.card:not([style*="display: none"])').length > 0) s.style.display = 'block';
+            if (searchGrid.children.length > 0) {
+                document.getElementById('search-results').style.display = 'block';
+            } else {
+                document.getElementById('search-results').style.display = 'block';
+                searchGrid.innerHTML = '<p style="color:#888;grid-column:1/-1;text-align:center;padding:40px;">No encontramos resultados para "' + document.getElementById('search-bar').value.trim() + '"</p>';
+            }
+        }
+
+        function addWithPackOption(btn) {
+            const card = btn.closest('.card');
+            let title = card.querySelector('h3').textContent.trim();
+            if (title.toLowerCase().includes("paises bajos")) title = "Holanda";
+            const variant = card.getAttribute('data-active-variant') || 'Local';
+            const version = card.getAttribute('data-active-version') || 'Fan';
+            const basePrice = parseInt(card.getAttribute('data-price')) || 20;
+            const tallaEl = card.querySelector('.talla-select');
+            const talla = tallaEl ? tallaEl.value : 'M';
+            const persoInput = card.querySelector('.perso-input');
+            const perso = persoInput ? persoInput.value.trim() : '';
+            const parchesCheck = card.querySelector('.parches-check');
+            const parches = parchesCheck ? parchesCheck.checked : false;
+            const pantalonCheck = card.querySelector('.pantalon-check');
+            const pantalon = pantalonCheck ? pantalonCheck.checked : false;
+            const esRetro = card.closest('#retro') !== null;
+            const esMundial = card.closest('#camisetas') !== null;
+
+            document.getElementById('pack-modal-product').textContent = title + ' (' + variant + ', ' + version + ', Talla ' + talla + ')';
+
+            let priceExtra = 0;
+            if (perso !== "") priceExtra += 1;
+            if (parches) priceExtra += 1;
+            if (pantalon) priceExtra += 5;
+
+            const opts = document.getElementById('pack-modal-options');
+            opts.innerHTML = '';
+
+            appendPackOption(opts, 'Solo', 'Solo esta camiseta', basePrice + priceExtra, function() {
+                addToCartRaw(title, variant, version, basePrice, talla, perso, parches, pantalon);
+                closePackModal();
             });
+
+            if (!esRetro) {
+                appendPackOption(opts, 'Pack Hatriki', '3x50\u20AC - A\u00F1ade 2 m\u00E1s luego', 17 + priceExtra, function() {
+                    addToCartRaw(title, variant, version, 17, talla, perso, parches, pantalon, 'Pack Hatriki');
+                    closePackModal();
+                });
+            }
+
+            if (esMundial) {
+                appendPackOption(opts, 'Orgullo Nacional', '4x65\u20AC - A\u00F1ade 3 selecciones m\u00E1s', 16 + priceExtra, function() {
+                    addToCartRaw(title, variant, version, 16, talla, perso, parches, pantalon, 'Orgullo Nacional');
+                    closePackModal();
+                });
+            }
+
+            if (!esRetro) {
+                appendPackOption(opts, 'Los Leones', '5x75\u20AC - A\u00F1ade 4 m\u00E1s', 15 + priceExtra, function() {
+                    addToCartRaw(title, variant, version, 15, talla, perso, parches, pantalon, 'Los Leones');
+                    closePackModal();
+                });
+            }
+
+            if (esRetro) {
+                appendPackOption(opts, 'Pack Retro', '3x70\u20AC - A\u00F1ade 2 m\u00E1s luego', 23 + priceExtra, function() {
+                    addToCartRaw(title, variant, version, 23, talla, perso, parches, pantalon, 'Pack Retro');
+                    closePackModal();
+                });
+            }
+
+            document.getElementById('pack-modal').style.display = 'flex';
+        }
+
+        function appendPackOption(parent, label, desc, price, onClick) {
+            const div = document.createElement('div');
+            div.style.cssText = 'display:flex;align-items:center;justify-content:space-between;background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:12px 16px;cursor:pointer;transition:border-color 0.2s;';
+            div.innerHTML = '<div><strong style="color:#fff;font-size:0.95rem;">' + label + '</strong><br><span style="color:#888;font-size:0.75rem;">' + desc + '</span></div><div style="text-align:right;"><span style="color:#00ff66;font-weight:800;font-size:1.1rem;">' + price + ',00€</span><br><span style="color:#555;font-size:0.7rem;">en carrito</span></div>';
+            div.onmouseover = function() { this.style.borderColor = '#e63946'; };
+            div.onmouseout = function() { this.style.borderColor = '#333'; };
+            div.onclick = onClick;
+            parent.appendChild(div);
+        }
+
+        function closePackModal() {
+            document.getElementById('pack-modal').style.display = 'none';
+        }
+
+        function openPackModal(packName, qty, totalPrice) {
+            document.getElementById('pack-modal-product').textContent = packName + ' - Añade productos desde las categorías';
+            const opts = document.getElementById('pack-modal-options');
+            opts.innerHTML = '<p style="color:#888;text-align:center;padding:20px;">Ve a las categorías (Mundial, Retro, etc.) y usa "Añadir al Pedido" seleccionando este pack.</p>' +
+                '<button class="btn-order" onclick="closePackModal(); filterCategory(\'camisetas\', document.querySelector(\'[data-tab=camisetas]\'));" style="background-color:#e63946;">Ir a Mundial</button>' +
+                '<button class="btn-order" onclick="closePackModal(); filterCategory(\'retro\', document.querySelector(\'[data-tab=retro]\'));" style="background-color:#e63946;margin-top:8px;">Ir a Retro</button>';
+            document.getElementById('pack-modal').style.display = 'flex';
+        }
+
+        function addToCartRaw(title, variant, version, finalPrice, talla, perso, parches, pantalon, packName) {
+            const item = { title, variant, version, talla, perso, parches, pantalon, price: finalPrice };
+            if (packName) item.packName = packName;
+            cart.push(item);
+            saveCart();
+            renderCart();
         }
 
         function openSizeModal() { document.getElementById('size-modal').style.display = 'flex'; }
@@ -426,29 +646,33 @@
             document.getElementById('cart-count').textContent = cart.length;
         }
 
-        document.addEventListener('DOMContentLoaded', function() { document.getElementById('cart-count').textContent = cart.length; });
-
-        function addToCart(btn) {
-            const card = btn.closest('.card');
-            let title = card.querySelector('h3').textContent.trim();
-            if (title.toLowerCase().includes("paises bajos")) title = "Holanda";
-            const variant = card.getAttribute('data-active-variant') || 'Local';
-            const version = card.getAttribute('data-active-version') || 'Fan';
-            let finalPrice = parseInt(card.getAttribute('data-price')) || 20;
-            const talla = card.querySelector('.talla-select').value;
-            const perso = card.querySelector('.perso-input').value.trim();
-            const parches = card.querySelector('.parches-check').checked;
-            const pantalon = card.querySelector('.pantalon-check').checked;
-            if (perso !== "") finalPrice += 1;
-            if (parches) finalPrice += 1;
-            if (pantalon) finalPrice += 5;
-            cart.push({ title, variant, version, talla, perso, parches, pantalon, price: finalPrice });
-            saveCart();
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "✅ Añadido"; btn.style.backgroundColor = "#00ff66"; btn.style.color = "#000";
-            setTimeout(() => { btn.innerHTML = originalText; btn.style.backgroundColor = "#e63946"; btn.style.color = "#fff"; }, 1200);
-            renderCart();
+        function saveCartToAccount() {
+            var email = document.getElementById('cart-email-input').value.trim();
+            var msg = document.getElementById('cart-account-msg');
+            if (!email || !email.includes('@')) { msg.textContent = '❌ Introduce un email válido'; msg.style.color = '#ff4444'; return; }
+            var key = 'ozz_cart_' + btoa(email);
+            localStorage.setItem(key, JSON.stringify(cart));
+            localStorage.setItem(key + '_discount', discountMultiplier);
+            msg.textContent = '✅ Carrito guardado con ' + email;
+            msg.style.color = '#00ff66';
         }
+
+        function loadCartFromAccount() {
+            var email = document.getElementById('cart-email-input').value.trim();
+            var msg = document.getElementById('cart-account-msg');
+            if (!email || !email.includes('@')) { msg.textContent = '❌ Introduce un email válido'; msg.style.color = '#ff4444'; return; }
+            var key = 'ozz_cart_' + btoa(email);
+            var saved = localStorage.getItem(key);
+            if (!saved) { msg.textContent = '❌ No hay carrito guardado para ' + email; msg.style.color = '#ff4444'; return; }
+            cart = JSON.parse(saved);
+            discountMultiplier = parseFloat(localStorage.getItem(key + '_discount')) || 0;
+            saveCart();
+            renderCart();
+            msg.textContent = '✅ Carrito restaurado de ' + email;
+            msg.style.color = '#00ff66';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() { document.getElementById('cart-count').textContent = cart.length; });
 
         function applyDiscount() {
             const input = document.getElementById('discount-input').value.trim().toUpperCase();
@@ -462,10 +686,42 @@
             const container = document.getElementById('cart-items-container');
             if (cart.length === 0) { container.innerHTML = "<p style='color:#888; text-align:center; font-style:italic;'>Tu carrito está vacío.</p>"; document.getElementById('cart-total-price').textContent = "0,00€"; return; }
             let html = ""; let subtotal = 0;
-            cart.forEach((item, index) => {
+            var packs = {}; var singles = [];
+            cart.forEach(function(item, index) {
+                if (item.packName) {
+                    if (!packs[item.packName]) packs[item.packName] = { items: [], total: 0, indices: [] };
+                    packs[item.packName].items.push(item);
+                    packs[item.packName].total += item.price;
+                    packs[item.packName].indices.push(index);
+                } else {
+                    singles.push({ item: item, index: index });
+                }
                 subtotal += item.price;
+            });
+            for (var pn in packs) {
+                var p = packs[pn];
+                var packCounts = { 'Pack Hatriki': 3, 'Orgullo Nacional': 4, 'Los Leones': 5, 'Los Cuquitos': 1, 'Pack Retro': 3 };
+                var needed = packCounts[pn] || 3;
+                html += '<div style="background:#1a2a1a;padding:12px;border-radius:8px;margin-bottom:10px;border:1px solid #1aa34a;">' +
+                    '<strong style="color:#00ff66;font-size:0.9rem;">📦 ' + pn + ' (' + p.items.length + '/' + needed + ')</strong>';
+                p.items.forEach(function(item, i) {
+                    var idx = p.indices[i];
+                    html += '<div style="margin-top:8px;padding:8px;background:#111;border-radius:6px;font-size:0.85rem;color:#ccc;position:relative;">' +
+                        '<span style="position:absolute;top:5px;right:8px;color:#ff4444;cursor:pointer;font-weight:bold;font-size:1rem;" onclick="removeFromCart(' + idx + ')">&times;</span>' +
+                        '<strong style="color:#fff;">' + item.title + '</strong> (' + item.variant + ')<br>' +
+                        'Versión: ' + item.version + ' | Talla: <strong style="color:white;">' + item.talla + '</strong><br>' +
+                        (item.perso ? 'Perso: ' + item.perso + ' (+1€)<br>' : '') +
+                        (item.parches ? 'Parches (+1€)<br>' : '') +
+                        (item.pantalon ? 'Pantalón (+5€)<br>' : '') +
+                        '<span style="color:#00ff66;font-weight:700;">' + item.price + ',00€</span></div>';
+                });
+                html += '</div>';
+            }
+            singles.forEach(function(s) {
+                var item = s.item;
+                var idx = s.index;
                 html += '<div style="background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 10px; position: relative; border: 1px solid #333;">' +
-                    '<span style="position: absolute; top: 10px; right: 15px; color: #ff4444; font-size: 1.2rem; cursor: pointer; font-weight: bold;" onclick="removeFromCart(' + index + ')">&times;</span>' +
+                    '<span style="position: absolute; top: 10px; right: 15px; color: #ff4444; font-size: 1.2rem; cursor: pointer; font-weight: bold;" onclick="removeFromCart(' + idx + ')">&times;</span>' +
                     '<strong style="color: #fff; font-size: 1rem;">' + item.title + ' (' + item.variant + ')</strong>' +
                     '<div style="color: #ccc; font-size: 0.85rem; margin-top: 6px; line-height: 1.4;">' +
                     'Versión: ' + item.version + ' | Talla: <strong style="color:white;">' + item.talla + '</strong><br>' +
@@ -489,17 +745,37 @@
             if(cart.length === 0) return;
             let subtotal = 0;
             let text = "¡Buenas OZZ KITS! Quiero realizar el siguiente pedido:\n\n";
-            cart.forEach((item, idx) => {
-                subtotal += item.price;
-                if (item.version === 'Pack Especial') {
-                    text += (idx+1) + '. ' + item.title + '\nOpciones: ' + item.talla + '\nPrecio: ' + item.price + '€\n\n';
+            var packs = {}; var singles = [];
+            cart.forEach(function(item, idx) {
+                if (item.packName) {
+                    if (!packs[item.packName]) packs[item.packName] = [];
+                    packs[item.packName].push(item);
                 } else {
-                    text += (idx+1) + '. Equipo: ' + item.title + ' (' + item.variant + ')\nCalidad: ' + item.version + '\nTalla: ' + item.talla + '\n';
-                    if(item.perso) text += 'Personalización: ' + item.perso + '\n';
-                    if(item.parches) text += 'Parches: Sí\n';
-                    if(item.pantalon) text += 'Pantalón a juego: Sí (+5€)\n';
-                    text += 'Precio: ' + item.price + '€\n\n';
+                    singles.push(item);
                 }
+                subtotal += item.price;
+            });
+            var itemNum = 1;
+            for (var pn in packs) {
+                var pItems = packs[pn];
+                text += '📦 ' + pn + ' (' + pItems.length + ' uds):\n';
+                pItems.forEach(function(item) {
+                    text += '  ' + itemNum + '. ' + item.title + ' (' + item.variant + ') - ' + item.version + ' - Talla ' + item.talla;
+                    if(item.perso) text += ' - Perso: ' + item.perso;
+                    if(item.parches) text += ' - Parches';
+                    if(item.pantalon) text += ' - Con Pantalón';
+                    text += ' - ' + item.price + '€\n';
+                    itemNum++;
+                });
+                text += '\n';
+            }
+            singles.forEach(function(item) {
+                text += itemNum + '. ' + item.title + ' (' + item.variant + ')\nCalidad: ' + item.version + '\nTalla: ' + item.talla + '\n';
+                if(item.perso) text += 'Personalización: ' + item.perso + '\n';
+                if(item.parches) text += 'Parches: Sí\n';
+                if(item.pantalon) text += 'Pantalón a juego: Sí (+5€)\n';
+                text += 'Precio: ' + item.price + '€\n\n';
+                itemNum++;
             });
             let discountAmount = subtotal * discountMultiplier;
             let finalTotal = subtotal - discountAmount;
@@ -510,24 +786,280 @@
             window.open('https://wa.me/34635062811?text=' + encodeURIComponent(text), '_blank');
         }
 
-        function addPackToCart(btn, title, price) {
-            const card = btn.closest('.card');
-            const detailsInput = card.querySelector('.perso-input');
-            const details = detailsInput ? detailsInput.value.trim() : '';
-            if(details === "") { detailsInput.style.borderColor = "#ff4444"; detailsInput.placeholder = "¡Escribe tus opciones aquí!"; setTimeout(() => { detailsInput.borderColor = "#333"; }, 2000); return; }
-            cart.push({ title: title, variant: 'OFERTA', version: 'Pack Especial', talla: details, perso: '', parches: false, pantalon: false, price: price });
-            saveCart();
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "✅ Pack Añadido"; btn.style.backgroundColor = "#00ff66"; btn.style.color = "#000";
-            setTimeout(() => { btn.innerHTML = originalText; btn.style.backgroundColor = "#bf0603"; btn.style.color = "white"; }, 1500);
-            renderCart();
+        var reviewInterval;
+
+        function startReviews() {
+            var track = document.getElementById('reviews-track');
+            var cards = track.querySelectorAll('.review-card');
+            if (cards.length < 2) return;
+            var idx = 0;
+            reviewInterval = setInterval(function() {
+                idx++;
+                if (idx >= cards.length) {
+                    idx = 0;
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                    return;
+                }
+                track.scrollTo({ left: cards[idx].offsetLeft, behavior: 'smooth' });
+            }, 4000);
         }
 
-        function moveReviews(dir) {
-            const track = document.getElementById('reviews-track');
-            const cards = track.querySelectorAll('.review-card');
-            if (cards.length === 0) return;
-            track.scrollBy({ left: cards[0].offsetWidth + 30 * dir, behavior: 'smooth' });
+        document.addEventListener('DOMContentLoaded', startReviews);
+
+        function openWishlistModal() {
+            var modal = document.getElementById('wishlist-modal');
+            var container = document.getElementById('wishlist-items');
+            var empty = document.getElementById('wishlist-empty');
+            container.innerHTML = '';
+            if (wishlist.length === 0) {
+                empty.style.display = 'block';
+            } else {
+                empty.style.display = 'none';
+                wishlist.forEach(function(key) {
+                    var p = findProduct(key);
+                    if (!p) return;
+                    var imgSrc = IMG_EQUIPACIONES + p.variantes[0].folder + '/' + p.variantes[0].imagenes[0];
+                    container.innerHTML += '<div style="display:flex;gap:12px;align-items:center;background:#151515;border:1px solid #222;border-radius:10px;padding:10px;cursor:pointer;" onclick="document.getElementById(\'wishlist-modal\').style.display=\'none\';showProductPage(\'' + key + '\');return false;">' +
+                        '<img src="' + imgSrc + '" style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">' +
+                        '<div style="flex:1;"><strong style="color:#fff;font-size:0.9rem;">' + p.nombre + '</strong><br><span style="color:#888;font-size:0.75rem;">' + (p.liga || p.categoria) + '</span></div>' +
+                        '<span style="color:#00ff66;font-weight:700;font-size:0.9rem;">' + p.precioFan + ',00€</span>' +
+                        '<span style="color:#ff4757;font-size:1.2rem;cursor:pointer;" onclick="event.stopPropagation();toggleWishlist(this,\'' + key + '\');openWishlistModal();">&times;</span>' +
+                    '</div>';
+                });
+            }
+            modal.style.display = 'flex';
+        }
+
+        var currentProductKey = null;
+        var lastSectionId = 'inicio';
+
+        function showProductPage(key) {
+            if (key === currentProductKey) return;
+            currentProductKey = key;
+            var p = findProduct(key);
+            if (!p) return;
+            // Save which section was visible
+            document.querySelectorAll('.category-section').forEach(function(s) {
+                if (s.style.display !== 'none' && s.id !== 'producto-page') lastSectionId = s.id;
+            });
+            history.pushState(null, '', '#/producto/' + key);
+            document.querySelectorAll('.category-section').forEach(function(s) { s.style.display = 'none'; });
+            document.getElementById('producto-page').style.display = 'block';
+            var detail = document.getElementById('producto-detail');
+            var precio = p.precioFan;
+            var tieneJugador = p.tieneJugador !== false;
+
+            var html = '<div class="producto-detail-card">';
+            html += '<div class="producto-imagen">';
+            html += '<div class="producto-slider" id="producto-slider">';
+            p.variantes.forEach(function(v, vi) {
+                v.imagenes.forEach(function(img) {
+                    html += '<img src="' + IMG_EQUIPACIONES + v.folder + '/' + img + '" alt="' + p.nombre + '" data-variant="' + vi + '" style="' + (vi === 0 ? '' : 'display:none;') + '">';
+                });
+            });
+            html += '</div>';
+            if (p.variantes[0].imagenes.length > 1) {
+                html += '<div style="display:flex;gap:8px;justify-content:center;margin-top:10px;">';
+                html += '<button class="btn-back" onclick="slideProductoImg(-1)">‹</button>';
+                html += '<button class="btn-back" onclick="slideProductoImg(1)">›</button>';
+                html += '</div>';
+            }
+            html += '</div>';
+            html += '<div class="producto-info">';
+            html += '<h2>' + p.nombre + '</h2>';
+            html += '<div class="producto-precio"><span id="producto-precio">' + precio + ',00€</span></div>';
+            html += '<label>Variante</label><div id="producto-variantes" style="display:flex;gap:8px;margin-bottom:8px;">';
+            p.variantes.forEach(function(v, i) {
+                var active = i === 0 ? 'active' : '';
+                html += '<span class="variant-dot ' + active + '" data-variant="' + v.nombre + '" style="background:' + v.color + ';width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid ' + (i===0?'#e63946':'transparent') + ';" onclick="switchProductoVariant(this,' + i + ')"></span>';
+            });
+            html += '</div>';
+            html += '<label>Versión</label><div id="producto-version" style="display:flex;gap:8px;margin-bottom:8px;">';
+            html += '<button class="version-btn active" onclick="switchProductoVersion(this, \'Fan\', ' + p.precioFan + ')">Versión Fan</button>';
+            if (tieneJugador) html += '<button class="version-btn" onclick="switchProductoVersion(this, \'Jugador\', ' + p.precioJugador + ')">Versión Jugador</button>';
+            html += '</div>';
+            html += '<label>Talla</label><select id="producto-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select>';
+            if (p.personalizacion) {
+                html += '<label>Personalizar (+1€)</label><input type="text" id="producto-perso" placeholder="' + p.placeholder + '">';
+            }
+            html += '<div class="checkbox-row"><input type="checkbox" id="producto-parches"> ' + p.parchesTexto + '</div>';
+            if (p.pantalon) {
+                html += '<div class="checkbox-row"><input type="checkbox" id="producto-pantalon"> Añadir Pantalón a juego (+5€)</div>';
+            }
+            html += '<div style="margin-top:20px;">';
+            html += '<button class="btn-order" onclick="addProductoToCart(\'' + key + '\')">🛒 Añadir al Pedido</button>';
+            html += '</div></div></div>';
+            detail.innerHTML = html;
+        }
+
+        function restoreLastSection() {
+            document.getElementById('producto-page').style.display = 'none';
+            if (lastSectionId && document.getElementById(lastSectionId)) {
+                var btn = document.querySelector('[data-tab="' + lastSectionId + '"]');
+                filterCategory(lastSectionId, btn);
+            } else {
+                filterCategory('inicio', document.querySelector('[data-tab=inicio]'));
+            }
+        }
+
+        function closeProductPage() {
+            currentProductKey = null;
+            history.back();
+        }
+
+        function switchProductoVersion(btn, version, price) {
+            document.querySelectorAll('#producto-version .version-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            document.getElementById('producto-precio').textContent = price + ',00€';
+        }
+
+        function switchProductoVariant(el, vi) {
+            document.querySelectorAll('#producto-variantes .variant-dot').forEach(function(d) { d.classList.remove('active'); d.style.borderColor = 'transparent'; });
+            el.classList.add('active');
+            el.style.borderColor = '#e63946';
+            // Show only images for this variant, hide others
+            document.querySelectorAll('#producto-slider img').forEach(function(img) {
+                img.style.display = parseInt(img.getAttribute('data-variant')) === vi ? '' : 'none';
+            });
+            // Reset scroll
+            document.getElementById('producto-slider').scrollLeft = 0;
+        }
+
+        function slideProductoImg(dir) {
+            var slider = document.getElementById('producto-slider');
+            var visibleImgs = slider.querySelectorAll('img[style*="display: block"], img:not([style*="display"])');
+            // Also handle inline style with empty display
+            var imgs = [];
+            slider.querySelectorAll('img').forEach(function(img) {
+                if (img.style.display !== 'none') imgs.push(img);
+            });
+            if (imgs.length < 2) return;
+            var w = imgs[0].offsetWidth;
+            if (!w) return;
+            var curr = Math.round(slider.scrollLeft / w);
+            var next = curr + dir;
+            if (next < 0) next = imgs.length - 1;
+            if (next >= imgs.length) next = 0;
+            slider.scrollTo({ left: next * w, behavior: 'smooth' });
+        }
+
+        function addProductoToCart(key) {
+            var p = findProduct(key);
+            if (!p) return;
+            var variant = document.querySelector('#producto-variantes .variant-dot.active');
+            var variantName = variant ? variant.getAttribute('data-variant') : p.variantes[0].nombre;
+            var versionBtn = document.querySelector('#producto-version .version-btn.active');
+            var version = versionBtn ? versionBtn.textContent.trim() === 'Versión Jugador' ? 'Jugador' : 'Fan' : 'Fan';
+            var basePrice = version === 'Jugador' ? p.precioJugador : p.precioFan;
+            var talla = document.getElementById('producto-talla').value;
+            var persoInput = document.getElementById('producto-perso');
+            var perso = persoInput ? persoInput.value.trim() : '';
+            var parches = document.getElementById('producto-parches').checked;
+            var pantalonEl = document.getElementById('producto-pantalon');
+            var pantalon = pantalonEl ? pantalonEl.checked : false;
+            var esRetro = p.categoria === 'retro';
+            var esMundial = p.categoria === 'camisetas';
+
+            document.getElementById('pack-modal-product').textContent = p.nombre + ' (' + variantName + ', ' + version + ', Talla ' + talla + ')';
+
+            var priceExtra = 0;
+            if (perso) priceExtra += 1;
+            if (parches) priceExtra += 1;
+            if (pantalon) priceExtra += 5;
+
+            var opts = document.getElementById('pack-modal-options');
+            opts.innerHTML = '';
+
+            appendPackOption(opts, 'Solo', 'Solo esta camiseta', basePrice + priceExtra, function() {
+                addToCartRaw(p.nombre, variantName, version, basePrice, talla, perso, parches, pantalon);
+                closePackModal();
+            });
+
+            if (!esRetro) {
+                appendPackOption(opts, 'Pack Hatriki', '3x50€ - Añade 2 más luego', 17 + priceExtra, function() {
+                    addToCartRaw(p.nombre, variantName, version, 17, talla, perso, parches, pantalon, 'Pack Hatriki');
+                    closePackModal();
+                });
+            }
+            if (esMundial) {
+                appendPackOption(opts, 'Orgullo Nacional', '4x65€ - Añade 3 selecciones más', 16 + priceExtra, function() {
+                    addToCartRaw(p.nombre, variantName, version, 16, talla, perso, parches, pantalon, 'Orgullo Nacional');
+                    closePackModal();
+                });
+            }
+            if (!esRetro) {
+                appendPackOption(opts, 'Los Leones', '5x75€ - Añade 4 más', 15 + priceExtra, function() {
+                    addToCartRaw(p.nombre, variantName, version, 15, talla, perso, parches, pantalon, 'Los Leones');
+                    closePackModal();
+                });
+            }
+            if (esRetro) {
+                appendPackOption(opts, 'Pack Retro', '3x70€ - Añade 2 más luego', 23 + priceExtra, function() {
+                    addToCartRaw(p.nombre, variantName, version, 23, talla, perso, parches, pantalon, 'Pack Retro');
+                    closePackModal();
+                });
+            }
+            document.getElementById('pack-modal').style.display = 'flex';
+        }
+
+        // Card click delegation for product page navigation
+        document.addEventListener('click', function(e) {
+            var card = e.target.closest('.card[data-product-key]');
+            if (!card) return;
+            if (e.target.closest('button, select, input, a, .wishlist-heart, .nav-arrow, .version-btn, .variant-dot, .size-link, .checkbox-container, .perso-input, .talla-select, .parches-check, .pantalon-check')) return;
+            var key = card.getAttribute('data-product-key');
+            showProductPage(key);
+        });
+
+        // Hash change handler
+        function handleHash() {
+            var match = window.location.hash.match(/^#\/producto\/(.+)/);
+            if (match) {
+                // Save last section before showing product page
+                document.querySelectorAll('.category-section').forEach(function(s) {
+                    if (s.style.display !== 'none' && s.id !== 'producto-page') lastSectionId = s.id;
+                });
+                showProductPage(decodeURIComponent(match[1]));
+            } else {
+                currentProductKey = null;
+                restoreLastSection();
+            }
+        }
+        window.addEventListener('hashchange', handleHash);
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash) handleHash();
+        });
+
+        function showDiscountPopup() {
+            var popup = document.getElementById('discount-popup');
+            if (popup) popup.style.display = 'flex';
+        }
+
+        function claimDiscount() {
+            localStorage.setItem('ozz_discount_shown', 'true');
+            localStorage.setItem('ozz_discount', '0.1');
+            discountMultiplier = 0.1;
+            renderCart();
+            document.getElementById('discount-popup').style.display = 'none';
+        }
+
+        function closeDiscount() {
+            localStorage.setItem('ozz_discount_shown', 'true');
+            document.getElementById('discount-popup').style.display = 'none';
+        }
+
+        function toggleFaq(el) {
+            el.parentElement.classList.toggle('open');
+        }
+
+        setTimeout(function() {
+            if (!localStorage.getItem('ozz_discount_shown')) {
+                showDiscountPopup();
+            }
+        }, 2500);
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
         }
     </script>
 </body>

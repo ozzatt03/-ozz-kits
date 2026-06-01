@@ -1054,6 +1054,25 @@ var PRODUCTOS = [
         variantes: [
             { nombre: "Local", color: "#ff6200", folder: "retro/holanda-1988", imagenes: ["delante.jpg", "detras.jpg"] }
         ]
+    },
+    {
+        nombre: "N\u00E1poles 87/88",
+        categoria: "retro",
+        liga: "Serie A",
+        tipo: "camiseta",
+        precioFan: 25,
+        precioJugador: 0,
+        tieneJugador: false,
+        topVentas: false,
+        nuevoDrop: false,
+        disponible: true,
+        personalizacion: true,
+        pantalon: false,
+        parchesTexto: "A\u00F1adir Parches (+1\u20AC)",
+        placeholder: "Nombre y N\u00BA",
+        variantes: [
+            { nombre: "Local", color: "#01a0e2", folder: "retro/napoles-8788", imagenes: ["delante.jpg", "detras.jpg"] }
+        ]
     }
 ];
 

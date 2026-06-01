@@ -447,32 +447,11 @@
             document.getElementById('search-bar').value = '';
             document.getElementById('search-results').style.display = 'none';
             document.getElementById('grid-search').innerHTML = '';
-            var catSection = document.querySelector('.categories-section');
-            if (catSection && id !== 'inicio') {
-                catSection.classList.add('section-exit');
-            }
             document.querySelectorAll('.category-section').forEach(function(s) {
-                if (s.id === id) {
-                    setTimeout(function() {
-                        s.style.display = 'block';
-                        s.classList.remove('section-enter');
-                        void s.offsetWidth;
-                        s.classList.add('section-enter');
-                    }, id === 'inicio' ? 0 : 150);
-                } else {
-                    s.style.display = 'none';
-                    s.classList.remove('section-enter');
-                }
+                s.style.display = s.id === id ? 'block' : 'none';
             });
-            if (catSection && id === 'inicio') {
-                catSection.classList.remove('section-exit');
-            }
             document.querySelectorAll('.nav-link').forEach(function(t) { t.classList.remove('active'); });
             if(btn && btn.classList) btn.classList.add('active');
-            if (id === 'inicio') {
-                document.querySelector('.categories-grid').style.opacity = '1';
-                document.querySelector('.categories-grid').style.transform = 'none';
-            }
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 

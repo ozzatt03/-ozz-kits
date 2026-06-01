@@ -110,14 +110,14 @@
             <h2 class="section-title">EXPLORA POR <span class="text-red">CATEGORÍA</span></h2>
             <p class="section-subtitle">Encuentra lo que buscas entre nuestras colecciones</p>
             <div class="categories-grid">
-                <div class="category-card" onclick="document.querySelector('[data-tab=packs]').click();">
+                <div class="category-card" onclick="event.stopPropagation();filterCategory('packs', document.querySelector('[data-tab=packs]'));">
                     <div class="cat-img-wrap"><img src="img/packs/pack-hatriki.png" alt="Packs" loading="lazy"></div>
                     <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
                     <div class="cat-body">
                         <h3>PACKS EXCLUSIVOS</h3>
                         <p>Ediciones limitadas y exclusivas</p>
                     </div>
-                    <div class="cat-footer"><a class="cat-link" href="javascript:void(0)">VER PACKS <span>&rarr;</span></a></div>
+                    <div class="cat-footer"><span class="cat-link">VER PACKS <span>&rarr;</span></span></div>
                 </div>
                 <div class="category-card" onclick="document.querySelector('[data-tab=camisetas]').click();">
                     <div class="cat-img-wrap"><img src="img/banners/banner-mundial.jpg" alt="Mundial" loading="lazy"></div>
@@ -126,16 +126,16 @@
                         <h3>CATÁLOGO MUNDIAL</h3>
                         <p>Todas las selecciones y mundiales</p>
                     </div>
-                    <div class="cat-footer"><a class="cat-link" href="javascript:void(0)">VER CATÁLOGO <span>&rarr;</span></a></div>
+                    <div class="cat-footer"><span class="cat-link">VER CATÁLOGO <span>&rarr;</span></span></div>
                 </div>
-                <div class="category-card" onclick="document.querySelector('[data-tab=retro]').click();">
+                <div class="category-card" onclick="event.stopPropagation();filterCategory('retro', document.querySelector('[data-tab=retro]'));">
                     <div class="cat-img-wrap"><img src="img/banners/Retro.jpg" alt="Retro" loading="lazy"></div>
                     <div class="cat-icon-bottom"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4 3 3 5 8 8 6 12 9 16 6 19 8 21 3 18 4 18 21 6 21Z"/></svg></div>
                     <div class="cat-body">
                         <h3>COLECCIÓN RETRO</h3>
                         <p>Camisetas clásicas icónicas</p>
                     </div>
-                    <div class="cat-footer"><a class="cat-link" href="javascript:void(0)">VER COLECCIÓN <span>&rarr;</span></a></div>
+                    <div class="cat-footer"><span class="cat-link">VER COLECCIÓN <span>&rarr;</span></span></div>
                 </div>
                 <div class="category-card" onclick="document.querySelector('[data-tab=chandales]').click();" style="display:none;">
                     <div class="cat-img-wrap"><img src="img/banners/Chandal.jpg" alt="Chándales" loading="lazy"></div>
@@ -144,7 +144,7 @@
                         <h3>CHÁNDALES</h3>
                         <p>Estilo y comodidad premium</p>
                     </div>
-                    <div class="cat-footer"><a class="cat-link" href="javascript:void(0)">VER CHÁNDALES <span>&rarr;</span></a></div>
+                    <div class="cat-footer"><span class="cat-link">VER CHÁNDALES <span>&rarr;</span></span></div>
                 </div>
             </div>
         </section>

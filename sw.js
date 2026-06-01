@@ -1,4 +1,4 @@
-var CACHE = 'ozz-cache-v8';
+var CACHE = 'ozz-cache-v9';
 var urlsToCache = [
     '.',
     'index.html',

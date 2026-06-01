@@ -334,6 +334,9 @@
                 <a href="https://instagram.com/ozz.att" target="_blank">Instagram</a>
                 <a href="https://tiktok.com/@ozz.att" target="_blank">TikTok</a>
                 <a href="#" onclick="document.querySelector('.faq-section')?.scrollIntoView({behavior:'smooth'});return false;">Envíos y Devoluciones</a>
+                <a href="#" onclick="document.getElementById('legal-modal').style.display='flex';return false;">Aviso Legal</a>
+                <a href="#" onclick="document.getElementById('privacidad-modal').style.display='flex';return false;">Privacidad</a>
+                <a href="#" onclick="document.getElementById('terminos-modal').style.display='flex';return false;">Términos</a>
             </div>
             <div class="footer-right">
                 © 2024 OZZ KITS. Todos los derechos reservados.
@@ -1063,5 +1066,70 @@
             navigator.serviceWorker.register('sw.js');
         }
     </script>
+
+    <div id="legal-modal" class="modal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-content" style="max-width:700px;">
+            <span class="close-modal" onclick="document.getElementById('legal-modal').style.display='none'">&times;</span>
+            <h3 style="margin-bottom:15px;">Aviso Legal</h3>
+            <div style="font-size:0.85rem;color:#ccc;line-height:1.7;max-height:55vh;overflow-y:auto;">
+                <p><strong>1. Titularidad</strong></p>
+                <p>OZZ KITS es una tienda online gestionada por David Att. Correo electrónico de contacto: <a href="mailto:ozzatt03@gmail.com" style="color:#e63946;">ozzatt03@gmail.com</a>.</p>
+                <p><strong>2. Propósito</strong></p>
+                <p>Este sitio web permite la compra de camisetas de fútbol de carácter retro y selecciones nacionales. Todas las camisetas son réplicas de alta calidad, no productos oficiales de clubes ni federaciones.</p>
+                <p><strong>3. Propiedad Intelectual</strong></p>
+                <p>Las marcas, logos y diseños mostrados pertenecen a sus respectivos propietarios. Su uso en esta web es meramente referencial para identificar los productos ofrecidos.</p>
+                <p><strong>4. Responsabilidad</strong></p>
+                <p>OZZ KITS no se responsabiliza del mal uso que el cliente pueda hacer de los productos adquiridos. El cliente es responsable de proporcionar una dirección de envío correcta.</p>
+                <p><strong>5. Legislación</strong></p>
+                <p>Este aviso legal se rige por la legislación española. Cualquier controversia se someterá a los juzgados de Córdoba, España.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacidad-modal" class="modal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-content" style="max-width:700px;">
+            <span class="close-modal" onclick="document.getElementById('privacidad-modal').style.display='none'">&times;</span>
+            <h3 style="margin-bottom:15px;">Política de Privacidad</h3>
+            <div style="font-size:0.85rem;color:#ccc;line-height:1.7;max-height:55vh;overflow-y:auto;">
+                <p><strong>1. Responsable del Tratamiento</strong></p>
+                <p>David Att – <a href="mailto:ozzatt03@gmail.com" style="color:#e63946;">ozzatt03@gmail.com</a></p>
+                <p><strong>2. Datos Recogidos</strong></p>
+                <p>Recogemos únicamente los datos que el cliente proporciona voluntariamente al realizar un pedido: nombre, dirección de envío, correo electrónico y número de teléfono. No recogemos datos de navegación ni utilizamos cookies de seguimiento sin consentimiento.</p>
+                <p><strong>3. Finalidad</strong></p>
+                <p>Los datos se utilizan exclusivamente para gestionar y procesar los pedidos realizados, así como para la comunicación necesaria sobre los mismos. No se utilizan para envío de publicidad sin consentimiento expreso.</p>
+                <p><strong>4. Conservación</strong></p>
+                <p>Los datos se conservan durante el tiempo necesario para cumplir con las obligaciones fiscales y legales (mínimo 4 años según normativa fiscal española).</p>
+                <p><strong>5. Derechos</strong></p>
+                <p>El cliente puede ejercer sus derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición escribiendo a <a href="mailto:ozzatt03@gmail.com" style="color:#e63946;">ozzatt03@gmail.com</a>.</p>
+                <p><strong>6. Cesión a Terceros</strong></p>
+                <p>Los datos no se cederán a terceros salvo obligación legal o para la gestión del envío (empresa de mensajería).</p>
+                <p><strong>7. WhatsApp</strong></p>
+                <p>Al contactar vía WhatsApp, compartes tu número con OZZ KITS únicamente para gestionar tu pedido. No almacenamos ni compartimos tu número con terceros.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="terminos-modal" class="modal" onclick="if(event.target===this)this.style.display='none'">
+        <div class="modal-content" style="max-width:700px;">
+            <span class="close-modal" onclick="document.getElementById('terminos-modal').style.display='none'">&times;</span>
+            <h3 style="margin-bottom:15px;">Términos y Condiciones</h3>
+            <div style="font-size:0.85rem;color:#ccc;line-height:1.7;max-height:55vh;overflow-y:auto;">
+                <p><strong>1. Proceso de Compra</strong></p>
+                <p>Los pedidos se realizan a través de la web y se procesan al recibir la confirmación vía WhatsApp. Una vez confirmado el pedido, no se puede modificar.</p>
+                <p><strong>2. Precios y Pagos</strong></p>
+                <p>Los precios están expresados en euros (€) con IVA incluido. Métodos de pago aceptados: Bizum, PayPal y transferencia bancaria. El pedido no se procesará hasta recibir el pago completo.</p>
+                <p><strong>3. Envíos</strong></p>
+                <p><strong>Envío GRATIS</strong> en todos los pedidos. Plazo de entrega estimado: <strong>10-14 días laborables</strong>. No nos responsabilizamos de retrasos ocasionados por la empresa de mensajería.</p>
+                <p><strong>4. Devoluciones y Reembolsos</strong></p>
+                <p>Plazo de 14 días naturales desde la recepción del pedido. La camiseta debe estar sin usar, sin lavar y en su embalaje original. Los gastos de devolución corren por cuenta del cliente. Una vez recibida y verificada, se reembolsará el importe total en un plazo de 5-7 días laborables.</p>
+                <p><strong>5. Personalización</strong></p>
+                <p>Las camisetas personalizadas (nombre y dorsal) no admiten devolución por errores del cliente al proporcionar los datos. Verifica bien la información antes de confirmar.</p>
+                <p><strong>6. Productos</strong></p>
+                <p>Las camisetas son réplicas de alta calidad. Pueden existir ligeras variaciones de color respecto a las imágenes mostradas en pantalla.</p>
+                <p><strong>7. Contacto</strong></p>
+                <p>Para cualquier incidencia, escríbenos a <a href="mailto:ozzatt03@gmail.com" style="color:#e63946;">ozzatt03@gmail.com</a> o vía WhatsApp.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

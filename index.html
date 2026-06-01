@@ -440,6 +440,7 @@
         });
 
         function filterCategory(id, btn) {
+            document.querySelector('.header-nav')?.classList.remove('open');
             if (window.location.hash) {
                 history.pushState(null, '', window.location.pathname);
             }

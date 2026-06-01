@@ -227,10 +227,6 @@
         <div id="vestir" class="category-section" style="display: none;"><h2 class="section-title" style="margin-top: 40px;">ROPA PARA VESTIR</h2><div class="grid" id="grid-vestir"></div></div>
         <div id="search-results" class="category-section" style="display: none;"><h2 class="section-title">RESULTADOS DE <span class="text-red">BÚSQUEDA</span></h2><div class="grid" id="grid-search"></div></div>
 
-        <div id="producto-page" class="category-section" style="display: none;">
-            <button class="btn-back" onclick="closeProductPage()">← Volver</button>
-            <div id="producto-detail"></div>
-        </div>
     </div>
 
     <section class="reviews-section">
@@ -446,7 +442,6 @@
         function filterCategory(id, btn) {
             if (window.location.hash) {
                 history.pushState(null, '', window.location.pathname);
-                currentProductKey = null;
             }
             document.getElementById('search-bar').value = '';
             document.getElementById('search-results').style.display = 'none';
@@ -823,7 +818,7 @@
                     var p = findProduct(key);
                     if (!p) return;
                     var imgSrc = IMG_EQUIPACIONES + p.variantes[0].folder + '/' + p.variantes[0].imagenes[0];
-                    container.innerHTML += '<div style="display:flex;gap:12px;align-items:center;background:#151515;border:1px solid #222;border-radius:10px;padding:10px;cursor:pointer;" onclick="document.getElementById(\'wishlist-modal\').style.display=\'none\';showProductPage(\'' + key + '\');return false;">' +
+                    container.innerHTML += '<div style="display:flex;gap:12px;align-items:center;background:#151515;border:1px solid #222;border-radius:10px;padding:10px;">' +
                         '<img src="' + imgSrc + '" style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;">' +
                         '<div style="flex:1;"><strong style="color:#fff;font-size:0.9rem;">' + p.nombre + '</strong><br><span style="color:#888;font-size:0.75rem;">' + (p.liga || p.categoria) + '</span></div>' +
                         '<span style="color:#00ff66;font-weight:700;font-size:0.9rem;">' + p.precioFan + ',00€</span>' +
@@ -833,206 +828,6 @@
             }
             modal.style.display = 'flex';
         }
-
-        var currentProductKey = null;
-        var lastSectionId = 'inicio';
-
-        function showProductPage(key) {
-            if (key === currentProductKey) return;
-            currentProductKey = key;
-            var p = findProduct(key);
-            if (!p) return;
-            // Save which section was visible
-            document.querySelectorAll('.category-section').forEach(function(s) {
-                if (s.style.display !== 'none' && s.id !== 'producto-page') lastSectionId = s.id;
-            });
-            history.pushState(null, '', '#/producto/' + key);
-            document.querySelectorAll('.category-section').forEach(function(s) { s.style.display = 'none'; });
-            document.getElementById('producto-page').style.display = 'block';
-            var detail = document.getElementById('producto-detail');
-            var precio = p.precioFan;
-            var tieneJugador = p.tieneJugador !== false;
-
-            var html = '<div class="producto-detail-card">';
-            html += '<div class="producto-imagen">';
-            html += '<div class="producto-slider" id="producto-slider">';
-            p.variantes.forEach(function(v, vi) {
-                v.imagenes.forEach(function(img) {
-                    html += '<img src="' + IMG_EQUIPACIONES + v.folder + '/' + img + '" alt="' + p.nombre + '" data-variant="' + vi + '" style="' + (vi === 0 ? '' : 'display:none;') + '">';
-                });
-            });
-            html += '</div>';
-            if (p.variantes[0].imagenes.length > 1) {
-                html += '<div style="display:flex;gap:8px;justify-content:center;margin-top:10px;">';
-                html += '<button class="btn-back" onclick="slideProductoImg(-1)">‹</button>';
-                html += '<button class="btn-back" onclick="slideProductoImg(1)">›</button>';
-                html += '</div>';
-            }
-            html += '</div>';
-            html += '<div class="producto-info">';
-            html += '<h2>' + p.nombre + '</h2>';
-            html += '<div class="producto-precio"><span id="producto-precio">' + precio + ',00€</span></div>';
-            html += '<label>Variante</label><div id="producto-variantes" style="display:flex;gap:8px;margin-bottom:8px;">';
-            p.variantes.forEach(function(v, i) {
-                var active = i === 0 ? 'active' : '';
-                html += '<span class="variant-dot ' + active + '" data-variant="' + v.nombre + '" style="background:' + v.color + ';width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid ' + (i===0?'#e63946':'transparent') + ';" onclick="switchProductoVariant(this,' + i + ')"></span>';
-            });
-            html += '</div>';
-            html += '<label>Versión</label><div id="producto-version" style="display:flex;gap:8px;margin-bottom:8px;">';
-            html += '<button class="version-btn active" onclick="switchProductoVersion(this, \'Fan\', ' + p.precioFan + ')">Versión Fan</button>';
-            if (tieneJugador) html += '<button class="version-btn" onclick="switchProductoVersion(this, \'Jugador\', ' + p.precioJugador + ')">Versión Jugador</button>';
-            html += '</div>';
-            html += '<label>Talla</label><select id="producto-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option></select>';
-            if (p.personalizacion) {
-                html += '<label>Personalizar (+1€)</label><input type="text" id="producto-perso" placeholder="' + p.placeholder + '">';
-            }
-            html += '<div class="checkbox-row"><input type="checkbox" id="producto-parches"> ' + p.parchesTexto + '</div>';
-            if (p.pantalon) {
-                html += '<div class="checkbox-row"><input type="checkbox" id="producto-pantalon"> Añadir Pantalón a juego (+5€)</div>';
-            }
-            html += '<div style="margin-top:20px;">';
-            html += '<button class="btn-order" onclick="addProductoToCart(\'' + key + '\')">🛒 Añadir al Pedido</button>';
-            html += '</div></div></div>';
-            detail.innerHTML = html;
-        }
-
-        function restoreLastSection() {
-            document.getElementById('producto-page').style.display = 'none';
-            if (lastSectionId && document.getElementById(lastSectionId)) {
-                var btn = document.querySelector('[data-tab="' + lastSectionId + '"]');
-                filterCategory(lastSectionId, btn);
-            } else {
-                filterCategory('inicio', document.querySelector('[data-tab=inicio]'));
-            }
-        }
-
-        function closeProductPage() {
-            currentProductKey = null;
-            history.back();
-        }
-
-        function switchProductoVersion(btn, version, price) {
-            document.querySelectorAll('#producto-version .version-btn').forEach(function(b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            document.getElementById('producto-precio').textContent = price + ',00€';
-        }
-
-        function switchProductoVariant(el, vi) {
-            document.querySelectorAll('#producto-variantes .variant-dot').forEach(function(d) { d.classList.remove('active'); d.style.borderColor = 'transparent'; });
-            el.classList.add('active');
-            el.style.borderColor = '#e63946';
-            // Show only images for this variant, hide others
-            document.querySelectorAll('#producto-slider img').forEach(function(img) {
-                img.style.display = parseInt(img.getAttribute('data-variant')) === vi ? '' : 'none';
-            });
-            // Reset scroll
-            document.getElementById('producto-slider').scrollLeft = 0;
-        }
-
-        function slideProductoImg(dir) {
-            var slider = document.getElementById('producto-slider');
-            var visibleImgs = slider.querySelectorAll('img[style*="display: block"], img:not([style*="display"])');
-            // Also handle inline style with empty display
-            var imgs = [];
-            slider.querySelectorAll('img').forEach(function(img) {
-                if (img.style.display !== 'none') imgs.push(img);
-            });
-            if (imgs.length < 2) return;
-            var w = imgs[0].offsetWidth;
-            if (!w) return;
-            var curr = Math.round(slider.scrollLeft / w);
-            var next = curr + dir;
-            if (next < 0) next = imgs.length - 1;
-            if (next >= imgs.length) next = 0;
-            slider.scrollTo({ left: next * w, behavior: 'smooth' });
-        }
-
-        function addProductoToCart(key) {
-            var p = findProduct(key);
-            if (!p) return;
-            var variant = document.querySelector('#producto-variantes .variant-dot.active');
-            var variantName = variant ? variant.getAttribute('data-variant') : p.variantes[0].nombre;
-            var versionBtn = document.querySelector('#producto-version .version-btn.active');
-            var version = versionBtn ? versionBtn.textContent.trim() === 'Versión Jugador' ? 'Jugador' : 'Fan' : 'Fan';
-            var basePrice = version === 'Jugador' ? p.precioJugador : p.precioFan;
-            var talla = document.getElementById('producto-talla').value;
-            var persoInput = document.getElementById('producto-perso');
-            var perso = persoInput ? persoInput.value.trim() : '';
-            var parches = document.getElementById('producto-parches').checked;
-            var pantalonEl = document.getElementById('producto-pantalon');
-            var pantalon = pantalonEl ? pantalonEl.checked : false;
-            var esRetro = p.categoria === 'retro';
-            var esMundial = p.categoria === 'camisetas';
-
-            document.getElementById('pack-modal-product').textContent = p.nombre + ' (' + variantName + ', ' + version + ', Talla ' + talla + ')';
-
-            var priceExtra = 0;
-            if (perso) priceExtra += 1;
-            if (parches) priceExtra += 1;
-            if (pantalon) priceExtra += 5;
-
-            var opts = document.getElementById('pack-modal-options');
-            opts.innerHTML = '';
-
-            appendPackOption(opts, 'Solo', 'Solo esta camiseta', basePrice + priceExtra, function() {
-                addToCartRaw(p.nombre, variantName, version, basePrice, talla, perso, parches, pantalon);
-                closePackModal();
-            });
-
-            if (!esRetro) {
-                appendPackOption(opts, 'Pack Hatriki', '3x50€ - Añade 2 más luego', 17 + priceExtra, function() {
-                    addToCartRaw(p.nombre, variantName, version, 17, talla, perso, parches, pantalon, 'Pack Hatriki');
-                    closePackModal();
-                });
-            }
-            if (esMundial) {
-                appendPackOption(opts, 'Orgullo Nacional', '4x65€ - Añade 3 selecciones más', 16 + priceExtra, function() {
-                    addToCartRaw(p.nombre, variantName, version, 16, talla, perso, parches, pantalon, 'Orgullo Nacional');
-                    closePackModal();
-                });
-            }
-            if (!esRetro) {
-                appendPackOption(opts, 'Los Leones', '5x75€ - Añade 4 más', 15 + priceExtra, function() {
-                    addToCartRaw(p.nombre, variantName, version, 15, talla, perso, parches, pantalon, 'Los Leones');
-                    closePackModal();
-                });
-            }
-            if (esRetro) {
-                appendPackOption(opts, 'Pack Retro', '3x70€ - Añade 2 más luego', 23 + priceExtra, function() {
-                    addToCartRaw(p.nombre, variantName, version, 23, talla, perso, parches, pantalon, 'Pack Retro');
-                    closePackModal();
-                });
-            }
-            document.getElementById('pack-modal').style.display = 'flex';
-        }
-
-        // Card click delegation for product page navigation
-        document.addEventListener('click', function(e) {
-            var card = e.target.closest('.card[data-product-key]');
-            if (!card) return;
-            if (e.target.closest('button, select, input, a, .wishlist-heart, .nav-arrow, .version-btn, .variant-dot, .size-link, .checkbox-container, .perso-input, .talla-select, .parches-check, .pantalon-check')) return;
-            var key = card.getAttribute('data-product-key');
-            showProductPage(key);
-        });
-
-        // Hash change handler
-        function handleHash() {
-            var match = window.location.hash.match(/^#\/producto\/(.+)/);
-            if (match) {
-                // Save last section before showing product page
-                document.querySelectorAll('.category-section').forEach(function(s) {
-                    if (s.style.display !== 'none' && s.id !== 'producto-page') lastSectionId = s.id;
-                });
-                showProductPage(decodeURIComponent(match[1]));
-            } else {
-                currentProductKey = null;
-                restoreLastSection();
-            }
-        }
-        window.addEventListener('hashchange', handleHash);
-        document.addEventListener('DOMContentLoaded', function() {
-            if (window.location.hash) handleHash();
-        });
 
         function showDiscountPopup() {
             var popup = document.getElementById('discount-popup');

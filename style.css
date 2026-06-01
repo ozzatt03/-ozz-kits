@@ -178,7 +178,7 @@ body { background-color: #0a0a0a; color: #ffffff; font-family: 'Inter', 'Segoe U
 
 /* CARDS */
 .card { background: #111; border: 1px solid #1a1a1a; border-radius: 14px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; position: relative; }
-.card:hover { transform: translateY(-5px); border-color: #333; }
+.card:hover { border-color: #333; }
 .image-container { width: 100%; aspect-ratio: 1 / 1; background: #161616; position: relative; overflow: hidden; }
 .image-slider { display: none; width: 100%; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
 .image-slider.active { display: flex; animation: smoothFade 0.35s ease-in-out forwards; }
@@ -392,27 +392,4 @@ body { background-color: #0a0a0a; color: #ffffff; font-family: 'Inter', 'Segoe U
 .wishlist-heart:hover { transform: scale(1.15); color: #ff4757; }
 .wishlist-heart.active { color: #ff4757; background: rgba(255,71,87,0.2); }
 
-/* PRODUCT PAGE */
-#producto-page { padding-top: 20px; }
-.btn-back { background: none; border: 1px solid #333; color: #fff; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; margin-bottom: 20px; }
-.btn-back:hover { border-color: #e63946; color: #e63946; }
-.producto-detail-card { display: flex; gap: 40px; background: #111; border: 1px solid #1a1a1a; border-radius: 16px; padding: 30px; }
-.producto-detail-card .producto-imagen { flex: 0 0 45%; max-width: 45%; }
-.producto-detail-card .producto-imagen img { width: 100%; border-radius: 12px; }
-.producto-detail-card .producto-imagen .producto-slider { display: flex; overflow: hidden; border-radius: 12px; }
-.producto-detail-card .producto-imagen .producto-slider img { min-width: 100%; transition: transform 0.4s ease; }
-.producto-detail-card .producto-info { flex: 1; }
-.producto-detail-card .producto-info h2 { font-size: 1.8rem; margin-bottom: 8px; }
-.producto-detail-card .producto-info .producto-precio { font-size: 1.6rem; font-weight: 800; color: #00ff66; margin: 15px 0; }
-.producto-detail-card .producto-info .producto-desc { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
-.producto-detail-card .producto-info label { display: block; color: #aaa; font-size: 0.8rem; margin-bottom: 4px; margin-top: 12px; }
-.producto-detail-card .producto-info select, .producto-detail-card .producto-info input[type="text"] { width: 100%; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 0.9rem; }
-.producto-detail-card .producto-info .checkbox-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: #ccc; font-size: 0.85rem; }
-.producto-detail-card .producto-info .checkbox-row input { width: 18px; height: 18px; accent-color: #e63946; }
 
-@media (max-width: 768px) {
-    .producto-detail-card { flex-direction: column; padding: 20px; }
-    .producto-detail-card .producto-imagen { flex: none; max-width: 100%; }
-    .producto-detail-card .producto-info h2 { font-size: 1.3rem; }
-    .producto-detail-card .producto-info .producto-precio { font-size: 1.3rem; }
-}

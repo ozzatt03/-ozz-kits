@@ -1233,6 +1233,7 @@ function renderProductos() {
 function initZoom() {
     var container = document.querySelector('.container');
     if (!container) return;
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
 
     container.addEventListener('mousemove', function(e) {
         var imgContainer = e.target.closest('.image-container');

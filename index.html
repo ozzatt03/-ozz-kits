@@ -469,7 +469,18 @@
             });
         }
 
-        function moveSlider(b, dir) { const c = b.parentElement.querySelector('.image-slider.active'); if(c) c.scrollBy({ left: c.clientWidth * dir, behavior: 'smooth' }); }
+        function moveSlider(b, dir) {
+            var imgContainer = b.closest('.image-container');
+            if (imgContainer) {
+                imgContainer.querySelectorAll('.image-slider img').forEach(function(img) {
+                    img.style.transition = 'transform 0.2s ease';
+                    img.style.transform = 'scale(1)';
+                    img.style.transformOrigin = 'center center';
+                });
+            }
+            var c = b.parentElement.querySelector('.image-slider.active');
+            if (c) c.scrollBy({ left: c.clientWidth * dir, behavior: 'smooth' });
+        }
         function switchVariant(d, vClass, vLabel) { const c = d.closest('.card'); c.querySelectorAll('.variant-dot').forEach(x => x.classList.remove('active')); d.classList.add('active'); c.querySelectorAll('.image-slider').forEach(s => s.classList.remove('active')); const ts = c.querySelector('.' + vClass); ts.classList.add('active'); ts.scrollTo({ left: 0 }); c.setAttribute('data-active-variant', vLabel); }
         function switchVersion(b, vLabel, p) { const c = b.closest('.card'); c.querySelectorAll('.version-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); const pe = c.querySelector('.price'); if(pe) pe.textContent = p + ',00€'; c.setAttribute('data-active-version', vLabel); c.setAttribute('data-price', p); }
         function normalizeText(str) { return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
